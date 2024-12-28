@@ -43,11 +43,10 @@ def get_detections():
             )
 
         return JSONResponse(content={"detections": formatted_data})
-    except requests.exceptions.RequestException as e:
+    except requests.exceptions.RequestException:
         return JSONResponse(
             content={
-                "error": "Er is een fout opgetreden bij het ophalen van data",
-                "details": str(e),
+                "error": "Er is een fout opgetreden bij het ophalen van data"
             },
             status_code=500,
         )
