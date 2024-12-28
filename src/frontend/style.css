@@ -1,0 +1,75 @@
+body {
+    background-color: #5d9748;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: white;
+    text-align: center;
+    margin: 20px 0;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #cccccc;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.bird-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.bird-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bird-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.bird-thumbnail {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.bird-info {
+    flex-grow: 1;
+}
+
+.bird-info h3 {
+    font-size: 1rem;
+    margin: 0;
+    color: white;
+}
+
+.bird-info p {
+    font-size: 0.9rem;
+    margin: 5px 0 0;
+    color: #cccccc;
+}
+
+.bird-time {
+    font-size: 0.9rem;
+    color: #cccccc;
+    white-space: nowrap;
+}
