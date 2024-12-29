@@ -4,6 +4,12 @@
 
 ---
 
+## 🪺 Doel
+
+Het doel is om vogelliefhebbers een eenvoudig platform te bieden om vogelactiviteit van een BirdWeather-station te volgen.
+
+--
+
 ## 🐤 Functies
 
 - Weergave van recente vogelwaarnemingen van het afgelopen uur.
@@ -42,7 +48,7 @@
 
 4. **Open je browser** en ga naar:
 
-    ```
+    ```bash
     http://localhost
     ```
 
@@ -88,6 +94,12 @@ De backend is gebouwd met **FastAPI** en biedt de API-endpoints. Deze backend ha
 ## 🐦 Licentie
 
 Dit project is gelicentieerd onder de **MIT-licentie**. Zie het bestand [LICENSE](LICENSE) voor meer details.
+
+---
+
+## 🕊️ Inspiratie
+
+Dit project is geïnspireerd door het <luistervink.nl>-project, dat zich richt op het monitoren en analyseren van vogelgeluiden. vogel-spotter bouwt voort op dat idee door waarnemingen van BirdWeather-stations te integreren in een gebruiksvriendelijke webapplicatie.
 
 ---
 
