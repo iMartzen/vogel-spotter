@@ -2,7 +2,7 @@ async function fetchBirds() {
   try {
     const response = await fetch("/api/detections");
     const data = await response.json();
-    
+
     if (data.detections.length === 0) {
       const birdList = document.getElementById("bird-list");
       birdList.innerHTML = "";
@@ -70,10 +70,9 @@ async function fetchStatus() {
   try {
     const response = await fetch("/api/status");
     const data = await response.json();
-    console.log(data);
     const statusIndicator = document.getElementById("status-indicator");
     if (statusIndicator) {
-      if (data.isOnline) {
+      if (data.status) {
         statusIndicator.innerHTML = "🟢 Online";
         statusIndicator.className = "status-indicator status-online";
         statusIndicator.title =
