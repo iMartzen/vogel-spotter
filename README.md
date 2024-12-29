@@ -1,10 +1,10 @@
-# Vogel Spotter
+# 🦜 vogel-spotter
 
-**Vogel Spotter** is een webapplicatie die recente vogelwaarnemingen weergeeft vanuit een BirdWeather-station. De applicatie bestaat uit een **FastAPI-backend** en een frontend die wordt geserveerd door **Nginx**.
+**vogel-spotter** is een webapplicatie die recente vogelwaarnemingen weergeeft vanuit een BirdWeather-station. De applicatie bestaat uit een **FastAPI-backend** en een frontend die wordt geserveerd door **Nginx**.
 
 ---
 
-## Functies
+## 🐤 Functies
 
 - Weergave van recente vogelwaarnemingen van het afgelopen uur.
 - Geeft de status van het BirdWeather-station weer (online/offline).
@@ -12,14 +12,14 @@
 
 ---
 
-## Vereisten
+## 🐦‍⬛ Vereisten
 
 - **Docker**: Zorg dat Docker op je systeem is geïnstalleerd.
 - **Docker Compose**: Vereist om meerdere containers tegelijk te beheren.
 
 ---
 
-## Installatie
+## 🐣 Installatie
 
 1. **Clone de repository**:
 
@@ -48,7 +48,7 @@
 
 ---
 
-## Projectstructuur
+## 🦆 Projectstructuur
 
 - **`src/`**: Bevat de broncode van de FastAPI-backend en de frontend.
 - **`nginx.conf`**: Configuratiebestand voor Nginx.
@@ -57,26 +57,26 @@
 
 ---
 
-## API Endpoints
+## 🦢 API Endpoints
 
 - **`/api/detections`**: Geeft recente vogelwaarnemingen van het afgelopen uur terug.
 - **`/api/status`**: Geeft de status van het BirdWeather-station terug (online/offline).
 
 ---
 
-## Frontend
+## 🐓 Frontend
 
 De frontend is een **single-page applicatie (SPA)** gebouwd met vanilla JavaScript. De frontend haalt gegevens op via de API en toont deze dynamisch in de interface.
 
 ---
 
-## Backend
+## 🦉 Backend
 
 De backend is gebouwd met **FastAPI** en biedt de API-endpoints. Deze backend haalt gegevens op van de BirdWeather-API, verwerkt deze en levert ze aan de frontend.
 
 ---
 
-## Nginx
+## 🦚 Nginx
 
 **Nginx** wordt gebruikt voor het:
 
@@ -85,13 +85,13 @@ De backend is gebouwd met **FastAPI** en biedt de API-endpoints. Deze backend ha
 
 ---
 
-## Licentie
+## 🐦 Licentie
 
 Dit project is gelicentieerd onder de **MIT-licentie**. Zie het bestand [LICENSE](LICENSE) voor meer details.
 
 ---
 
-## To Do
+## 🐦‍🔥 To Do
 
 ### Mogelijke uitbreidingen
 
