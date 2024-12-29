@@ -10,11 +10,13 @@
 </head>
 
 <body>
+    <div class="controls">
+        <button id="refresh-button" class="refresh-button">🔄 Refresh</button>
+        <div id="status-indicator" class="status-indicator">Status ophalen...</div>
+        <button id="theme-toggle-button" class="theme-toggle-button">🌙 Dark Mode</button>
+    </div>
     <h1>Vogels waargenomen in mijn tuin</h1>
     <h2>Recente waarnemingen van het afgelopen uur</h2>
-    <div id="status-indicator" class="status-indicator">Status ophalen...</div>
-    <button id="refresh-button" class="refresh-button">🔄 Refresh</button>
-    <button id="theme-toggle-button" class="theme-toggle-button">🌙 Dark Mode</button>
     <ul id="bird-list" class="bird-list"></ul>
     <script src="script.js"></script>
 </body>

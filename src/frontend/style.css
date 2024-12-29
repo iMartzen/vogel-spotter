@@ -98,56 +98,41 @@ h2 {
     white-space: nowrap;
 }
 
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin: 20px;
+    flex-wrap: wrap;
+}
+
 .status-indicator {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .status-online {
-  color: var(--online-color);
+    color: var(--online-color);
 }
 
 .status-offline {
-  color: var(--offline-color);
+    color: var(--offline-color);
 }
 
-.refresh-button {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: var(--button-background-color);
-  color: var(--text-color);
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+.refresh-button, .theme-toggle-button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--button-background-color);
+    color: var(--text-color);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-.refresh-button:hover {
-    background-color: var(--button-hover-background-color);
-}
-
-.theme-toggle-button {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: var(--button-background-color);
-  color: var(--text-color);
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.theme-toggle-button:hover {
+.refresh-button:hover, .theme-toggle-button:hover {
     background-color: var(--button-hover-background-color);
 }
