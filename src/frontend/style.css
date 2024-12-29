@@ -8,6 +8,14 @@
     --offline-color: #dc3545;
     --button-background-color: #5d9748;
     --button-hover-background-color: #4a7a3a;
+    --font-family: 'Arial', sans-serif;
+    --font-size-large: 2.5rem;
+    --font-size-medium: 1.8rem;
+    --font-size-small: 1rem;
+    --font-size-xsmall: 0.9rem;
+    --border-radius: 10px;
+    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    --box-shadow-hover: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 [data-theme="dark"] {
@@ -24,21 +32,21 @@
 
 body {
     background-color: var(--background-color);
-    font-family: 'Arial', sans-serif;
+    font-family: var(--font-family);
     color: var(--text-color);
     margin: 0;
     padding: 0;
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: var(--font-size-large);
     color: var(--text-color);
     text-align: center;
     margin: 20px 0;
 }
 
 h2 {
-    font-size: 1.8rem;
+    font-size: var(--font-size-medium);
     color: var(--secondary-text-color);
     text-align: center;
     margin-bottom: 30px;
@@ -56,16 +64,16 @@ h2 {
     align-items: center;
     justify-content: space-between;
     background-color: var(--card-background-color);
-    border-radius: 10px;
+    border-radius: var(--border-radius);
     padding: 10px 15px;
     margin-bottom: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--box-shadow);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .bird-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--box-shadow-hover);
 }
 
 .bird-thumbnail {
@@ -81,19 +89,19 @@ h2 {
 }
 
 .bird-info h3 {
-    font-size: 1rem;
+    font-size: var(--font-size-small);
     margin: 0;
     color: var(--text-color);
 }
 
 .bird-info p {
-    font-size: 0.9rem;
+    font-size: var(--font-size-xsmall);
     margin: 5px 0 0;
     color: var(--secondary-text-color);
 }
 
 .bird-time {
-    font-size: 0.9rem;
+    font-size: var(--font-size-xsmall);
     color: var(--secondary-text-color);
     white-space: nowrap;
 }
@@ -128,11 +136,60 @@ h2 {
     border-radius: 5px;
     background-color: var(--button-background-color);
     color: var(--text-color);
-    font-size: 1rem;
+    font-size: var(--font-size-small);
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
 
 .refresh-button:hover, .theme-toggle-button:hover {
     background-color: var(--button-hover-background-color);
+}
+
+.footer {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: auto;
+    padding: 10px 20px;
+    background-color: var(--card-background-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+    flex-wrap: nowrap;
+}
+
+.footer-left,
+.footer-right {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.footer-left {
+    flex-grow: 1;
+}
+
+.footer-right {
+    flex-grow: 0;
+}
+
+.footer p {
+    color: var(--secondary-text-color);
+}
+
+.footer a {
+    color: var(--text-color);
+    font-size: var(--font-size-xsmall);
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.footer img {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
 }
