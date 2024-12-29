@@ -2,6 +2,22 @@ async function fetchBirds() {
   try {
     const response = await fetch("/api/detections");
     const data = await response.json();
+    
+    if (data.detections.length === 0) {
+      const birdList = document.getElementById("bird-list");
+      birdList.innerHTML = "";
+
+      const noBirds = document.createElement("li");
+      noBirds.className = "bird-card";
+
+      const noBirdsText = document.createElement("p");
+      noBirdsText.textContent = "Geen waarnemingen in het afgelopen uur";
+
+      noBirds.appendChild(noBirdsText);
+      birdList.appendChild(noBirds);
+
+      return;
+    }
 
     const birdList = document.getElementById("bird-list");
     birdList.innerHTML = "";
@@ -49,3 +65,30 @@ async function fetchBirds() {
 }
 
 fetchBirds();
+
+async function fetchStatus() {
+  try {
+    const response = await fetch("/api/status");
+    const data = await response.json();
+    console.log(data);
+    const statusIndicator = document.getElementById("status-indicator");
+    if (statusIndicator) {
+      if (data.isOnline) {
+        statusIndicator.innerHTML = "🟢 Online";
+        statusIndicator.className = "status-indicator status-online";
+        statusIndicator.title =
+          "Online: Geldige activiteit gedetecteerd in het afgelopen uur.";
+      } else {
+        statusIndicator.innerHTML = "🔴 Offline";
+        statusIndicator.className = "status-indicator status-offline";
+        statusIndicator.title =
+          "Offline: Geen geldige activiteit gedetecteerd in het afgelopen uur.";
+      }
+    }
+  } catch (error) {
+    console.error("Error fetching status:", error);
+  }
+}
+
+fetchStatus();
+setInterval(fetchStatus, 60000);
