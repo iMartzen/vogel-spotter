@@ -65,6 +65,7 @@ async function fetchBirds() {
 }
 
 fetchBirds();
+setInterval(fetchBirds, 600000);
 
 async function fetchStatus() {
   try {
@@ -91,3 +92,7 @@ async function fetchStatus() {
 
 fetchStatus();
 setInterval(fetchStatus, 60000);
+
+document.getElementById("refresh-button").addEventListener("click", () => {
+  fetchBirds();
+});

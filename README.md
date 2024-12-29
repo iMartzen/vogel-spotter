@@ -112,4 +112,3 @@ Dit project is geïnspireerd door het <luistervink.nl>-project, dat zich richt o
 - **Top 25 aller tijden**: Voeg een overzicht toe van de 25 meest gespotte vogels sinds het begin van de registratie.
 - **Ansible Playbook**: Automatisch een host inrichten met de applicatie inclusief een Let’s Encrypt-certificaa
 - **Dark Mode**: Voeg een donker thema toe voor een betere gebruikerservaring in de avonduren.
-- **Refresh button**: Voeg een button toe die in-pagina refresh doet.

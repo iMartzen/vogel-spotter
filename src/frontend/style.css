@@ -85,9 +85,27 @@ h2 {
 }
 
 .status-online {
-  color: rgb(112, 246, 112);
+  color: #84db64;
 }
 
 .status-offline {
-  color: rgb(255, 111, 111);
+  color: #dd3535
+}
+
+.refresh-button {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4b7c39;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.refresh-button:hover {
+    background-color: #333;
 }
