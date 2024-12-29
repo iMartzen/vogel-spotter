@@ -8,7 +8,7 @@
 
 Het doel is om vogelliefhebbers een eenvoudig platform te bieden om vogelactiviteit van een BirdWeather-station te volgen.
 
---
+---
 
 ## 🐤 Functies
 
