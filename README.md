@@ -15,6 +15,8 @@ Het doel is om vogelliefhebbers een eenvoudig platform te bieden om vogelactivit
 - Weergave van recente vogelwaarnemingen van het afgelopen uur.
 - Geeft de status van het BirdWeather-station weer (online/offline).
 - Responsief ontwerp geschikt voor verschillende schermformaten.
+- Ondersteuning voor dark mode voor gebruik in omgevingen met weinig licht.
+- Bevat een refresh-knop voor snelle updates.
 
 ---
 
@@ -111,4 +113,3 @@ Dit project is geïnspireerd door het <luistervink.nl>-project, dat zich richt o
 - **Maandelijkse statistieken**: Toon het aantal waarnemingen per vogelsoort gedurende een maand.
 - **Top 25 aller tijden**: Voeg een overzicht toe van de 25 meest gespotte vogels sinds het begin van de registratie.
 - **Ansible Playbook**: Automatisch een host inrichten met de applicatie inclusief een Let’s Encrypt-certificaa
-- **Dark Mode**: Voeg een donker thema toe voor een betere gebruikerservaring in de avonduren.

@@ -96,3 +96,10 @@ setInterval(fetchStatus, 60000);
 document.getElementById("refresh-button").addEventListener("click", () => {
   fetchBirds();
 });
+
+document.getElementById("theme-toggle-button").addEventListener("click", () => {
+  const currentTheme = document.documentElement.getAttribute("data-theme");
+  const newTheme = currentTheme === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", newTheme);
+  document.getElementById("theme-toggle-button").textContent = newTheme === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
+});
