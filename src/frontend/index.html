@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl" data-theme="dark">
+<html lang="nl" locale="nl" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -12,25 +12,26 @@
 <body>
     <!-- Controls Section -->
     <div class="controls">
-        <button id="refresh-button" class="refresh-button">🔄 Refresh</button>
-        <div id="status-indicator" class="status-indicator">Status ophalen...</div>
-        <button id="theme-toggle-button" class="theme-toggle-button">🌙 Dark Mode</button>
+        <button id="refresh-button" class="refresh-button"></button>
+        <button id="locale-toggle-button" class="locale-toggle-button"></button>
+        <button id="theme-toggle-button" class="theme-toggle-button"></button>
+        <div id="status-indicator" class="status-indicator"></div>
     </div>
 
     <!-- Birds Section -->
     <div class="birds">
-        <h1>Vogels waargenomen in mijn tuin</h1>
-        <h2>Recente waarnemingen van het afgelopen uur</h2>
+        <h1 id="main-title"></h1>
+        <h2 id="subtitle"></h2>
         <ul id="bird-list" class="bird-list"></ul>
     </div>
 
     <!-- Footer Section -->
     <div class="footer">
         <div class="footer-left">
-            <p><a href="https://github.com/imneztra/vogel-spotter"><img src="images/github-icon-white.svg" alt="GitHub">Project op GitHub</a></p>
+            <p><img src="images/github-icon-white.svg" alt="GitHub" id="github-icon"><a href="https://github.com/imneztra/vogel-spotter">Project op GitHub</a></p>
         </div>
         <div class="footer-right">
-            <p>Met ♥︎ gemaakt door <a href="https://github.com/iMartzen">iMartzen</a></p>
+            <p></p>
         </div>
     </div>
 

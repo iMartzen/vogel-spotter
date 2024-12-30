@@ -8,6 +8,7 @@
     --offline-color: #dc3545;
     --button-background-color: #5d9748;
     --button-hover-background-color: #4a7a3a;
+    --button-text-color: #e0e0e0;
     --font-family: 'Arial', sans-serif;
     --font-size-large: 2.5rem;
     --font-size-medium: 1.8rem;
@@ -28,6 +29,7 @@
     --offline-color: #dc3545;
     --button-background-color: #5d9748;
     --button-hover-background-color: #4a7a3a;
+    --button-text-color: #ffffff;
 }
 
 body {
@@ -133,18 +135,18 @@ h2 {
     color: var(--offline-color);
 }
 
-.refresh-button, .theme-toggle-button {
+.refresh-button, .theme-toggle-button, .locale-toggle-button {
     padding: 10px;
     border: none;
     border-radius: 5px;
     background-color: var(--button-background-color);
-    color: var(--text-color);
+    color: var(--button-text-color);
     font-size: var(--font-size-small);
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
 
-.refresh-button:hover, .theme-toggle-button:hover {
+.refresh-button:hover, .theme-toggle-button:hover, .locale-toggle-button:hover {
     background-color: var(--button-hover-background-color);
 }
 
