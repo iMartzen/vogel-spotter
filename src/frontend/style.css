@@ -36,6 +36,9 @@ body {
     color: var(--text-color);
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 h1 {
@@ -97,7 +100,7 @@ h2 {
 .bird-info p {
     font-size: var(--font-size-xsmall);
     margin: 5px 0 0;
-    color: var(--secondary-text-color);
+    color: var (--secondary-text-color);
 }
 
 .bird-time {
@@ -156,6 +159,9 @@ h2 {
     align-items: center;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
     flex-wrap: nowrap;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
 
 .footer-left,

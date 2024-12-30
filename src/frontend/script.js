@@ -32,9 +32,6 @@ async function fetchBirds() {
       const birdTitle = document.createElement("h3");
       birdTitle.textContent = detection.commonName || "Onbekende vogel";
 
-      const birdTime = document.createElement("p");
-      birdTime.textContent = `Gehoord om: ${detection.time || "Onbekend tijdstip"}`;
-
       // Time of detection
       const timeElement = document.createElement("div");
       timeElement.className = "bird-time";
@@ -42,7 +39,6 @@ async function fetchBirds() {
 
       // Append elements to card
       birdInfo.appendChild(birdTitle);
-      birdInfo.appendChild(birdTime);
       birdCard.appendChild(birdImage);
       birdCard.appendChild(birdInfo);
       birdCard.appendChild(timeElement);
