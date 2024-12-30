@@ -1,15 +1,95 @@
+// Translations
+const translations = {
+  nl: {
+    refreshButton: "🔄 Verversen",
+    statusIndicatorFetching: "Status ophalen...",
+    statusOnline: "🟢 Online",
+    statusOffline: "🔴 Offline",
+    localeToggleButton: "🇬🇧 English",
+    themeToggleButtonDark: "🌙 Donkere modus",
+    themeToggleButtonLight: "☀️ Lichte modus",
+    h1: "Vogels waargenomen in mijn tuin",
+    h2: "Recente waarnemingen van het afgelopen uur",
+    footerLeft: "Project op GitHub",
+    footerRight: "Met ♥︎ gemaakt door",
+    noDetections: "Geen waarnemingen in het afgelopen uur",
+    unknownBird: "Onbekende vogel",
+    unknownTime: "Onbekend",
+    errorMessageStatus: "Kon de status niet laden.",
+  },
+  en: {
+    refreshButton: "🔄 Refresh",
+    statusIndicatorFetching: "Fetching status...",
+    statusOnline: "🟢 Online",
+    statusOffline: "🔴 Offline",
+    localeToggleButton: "🇳🇱 Nederlands",
+    themeToggleButtonDark: "🌙 Dark Mode",
+    themeToggleButtonLight: "☀️ Light Mode",
+    h1: "Birds spotted in my garden",
+    h2: "Recent sightings from the past hour",
+    footerLeft: "Project on GitHub",
+    footerRight: "Made with ♥︎ by",
+    noDetections: "No sightings in the past hour",
+    unknownBird: "Unknown bird",
+    unknownTime: "Unknown",
+    errorMessageStatus: "Could not load the status.",
+  },
+};
+
+function getCurrentLocale() {
+  return document.documentElement.getAttribute("locale") || "nl";
+}
+
+function setCurrentLocale(locale) {
+  document.documentElement.setAttribute("locale", locale);
+}
+
+function updateLocale() {
+  const locale = getCurrentLocale();
+  const t = translations[locale];
+  if (!t) return;
+
+  // Buttons
+  document.getElementById("refresh-button").textContent = t.refreshButton;
+  const statusIndicator = document.getElementById("status-indicator");
+  statusIndicator.textContent = t.statusIndicatorFetching;
+
+  document.getElementById("locale-toggle-button").textContent =
+    t.localeToggleButton;
+
+  // Theme
+  const currentTheme = document.documentElement.getAttribute("data-theme");
+  document.getElementById("theme-toggle-button").textContent =
+    currentTheme === "dark"
+      ? t.themeToggleButtonLight
+      : t.themeToggleButtonDark;
+
+  // Title
+  document.querySelector(".birds h1").textContent = t.h1;
+  document.querySelector(".birds h2").textContent = t.h2;
+
+  // Footer
+  document.querySelector(".footer-left a").textContent = t.footerLeft;
+  document.querySelector(
+    ".footer-right p"
+  ).innerHTML = `${t.footerRight} <a href="https://github.com/iMartzen">iMartzen</a>`;
+}
+
 async function fetchBirds() {
   try {
-    const response = await fetch("/api/detections");
+    const locale = getCurrentLocale();
+    const response = await fetch(`/api/detections?locale=${locale}`);
     const data = await response.json();
     const birdList = document.getElementById("bird-list");
     birdList.innerHTML = "";
 
-    if (data.detections.length === 0) {
+    const t = translations[locale];
+
+    if (!data.detections || data.detections.length === 0) {
       const noBirds = document.createElement("li");
       noBirds.className = "bird-card";
       const noBirdsText = document.createElement("p");
-      noBirdsText.textContent = "Geen waarnemingen in het afgelopen uur";
+      noBirdsText.textContent = t.noDetections;
       noBirds.appendChild(noBirdsText);
       birdList.appendChild(noBirds);
       return;
@@ -19,25 +99,25 @@ async function fetchBirds() {
       const birdCard = document.createElement("li");
       birdCard.className = "bird-card";
 
-      // Bird image
+      // Bird Image
       const birdImage = document.createElement("img");
       birdImage.src = detection.thumbnailUrl || "fallback-image.jpg";
-      birdImage.alt = detection.commonName || "Onbekende vogel";
+      birdImage.alt = detection.commonName || t.unknownBird;
       birdImage.className = "bird-thumbnail";
 
-      // Bird info
+      // Bird Info
       const birdInfo = document.createElement("div");
       birdInfo.className = "bird-info";
 
       const birdTitle = document.createElement("h3");
-      birdTitle.textContent = detection.commonName || "Onbekende vogel";
+      birdTitle.textContent = detection.commonName || t.unknownBird;
 
-      // Time of detection
+      // Bird Time
       const timeElement = document.createElement("div");
       timeElement.className = "bird-time";
-      timeElement.textContent = detection.time || "Onbekend";
+      timeElement.textContent = detection.time || t.unknownTime;
 
-      // Append elements to card
+      // Merge
       birdInfo.appendChild(birdTitle);
       birdCard.appendChild(birdImage);
       birdCard.appendChild(birdInfo);
@@ -45,50 +125,75 @@ async function fetchBirds() {
       birdList.appendChild(birdCard);
     });
   } catch (error) {
-    console.error("Error fetching bird data:", error);
+    console.error("Fout bij het ophalen van vogeldetecties:", error);
   }
 }
-
-// Fetch birds initially and every 10 minutes
-fetchBirds();
-setInterval(fetchBirds, 600000);
 
 async function fetchStatus() {
   try {
+    const locale = getCurrentLocale();
+    const t = translations[locale];
+    const statusIndicator = document.getElementById("status-indicator");
+
     const response = await fetch("/api/status");
     const data = await response.json();
-    const statusIndicator = document.getElementById("status-indicator");
-    if (statusIndicator) {
-      if (data.status) {
-        statusIndicator.innerHTML = "🟢 Online";
-        statusIndicator.className = "status-indicator status-online";
-        statusIndicator.title = "Online: Geldige activiteit gedetecteerd in het afgelopen uur.";
-      } else {
-        statusIndicator.innerHTML = "🔴 Offline";
-        statusIndicator.className = "status-indicator status-offline";
-        statusIndicator.title = "Offline: Geen geldige activiteit gedetecteerd in het afgelopen uur.";
-      }
+
+    if (data.status) {
+      // Online
+      statusIndicator.innerHTML = t.statusOnline;
+      statusIndicator.className = "status-indicator status-online";
+    } else {
+      // Offline
+      statusIndicator.innerHTML = t.statusOffline;
+      statusIndicator.className = "status-indicator status-offline";
     }
   } catch (error) {
-    console.error("Error fetching status:", error);
+    console.error("Fout bij het ophalen van de status:", error);
   }
 }
 
-// Fetch status initially and every minute
-fetchStatus();
-setInterval(fetchStatus, 60000);
+function refreshAll() {
+  fetchBirds();
+  fetchStatus();
+  updateLocale();
+}
 
-// Event listeners for buttons
-document.getElementById("refresh-button").addEventListener("click", fetchBirds);
+document.addEventListener("DOMContentLoaded", () => {
+  if (!document.documentElement.getAttribute("locale")) {
+    setCurrentLocale("nl");
+  }
 
-document.getElementById("theme-toggle-button").textContent = "☀️ Light Mode";
+  refreshAll();
 
-document.getElementById("theme-toggle-button").addEventListener("click", () => {
-  const currentTheme = document.documentElement.getAttribute("data-theme");
-  const newTheme = currentTheme === "dark" ? "light" : "dark";
-  document.documentElement.setAttribute("data-theme", newTheme);
-  document.getElementById("theme-toggle-button").textContent = newTheme === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
-  
-  const githubIcon = document.querySelector(".footer a img");
-  githubIcon.src = newTheme === "dark" ? "images/github-icon-white.svg" : "images/github-icon.svg";
+  document
+    .getElementById("refresh-button")
+    .addEventListener("click", refreshAll);
+
+  document
+    .getElementById("theme-toggle-button")
+    .addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", newTheme);
+      refreshAll();
+      const githubIcon = document.getElementById("github-icon");
+      if (githubIcon) {
+        githubIcon.src =
+          newTheme === "dark"
+            ? "images/github-icon-white.svg"
+            : "images/github-icon.svg";
+      }
+    });
+
+  document
+    .getElementById("locale-toggle-button")
+    .addEventListener("click", () => {
+      const currentLocale = getCurrentLocale();
+      const newLocale = currentLocale === "nl" ? "en" : "nl";
+      setCurrentLocale(newLocale);
+      refreshAll();
+    });
+
+  setInterval(fetchBirds, 600000);
+  setInterval(fetchStatus, 60000);
 });
