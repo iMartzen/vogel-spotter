@@ -1,6 +1,6 @@
 # 🦜 vogel-spotter
 
-Click here for [🇬🇧 English](#-english)
+❗ Click here for [🇬🇧 English](#-english)
 
 **vogel-spotter** is een webapplicatie die recente vogelwaarnemingen weergeeft vanuit een BirdWeather-station. De applicatie bestaat uit een **FastAPI-backend** en een frontend die wordt geserveerd door **Nginx**.
 
