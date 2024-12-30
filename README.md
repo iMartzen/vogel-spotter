@@ -16,7 +16,7 @@
 - [🦉 Backend](#-backend)
 - [🦚 Nginx](#-nginx)
 - [🐦 Licentie](#-licentie)
-- [🕊️ Inspiratie](#-inspiratie)
+- [🕊️ Inspiratie](#%EF%B8%8F-inspiratie)
 - [🐦‍🔥 To Do](#-to-do)
 - [🇬🇧 English](#-english)
 
@@ -109,8 +109,7 @@ Dit project is geïnspireerd door het <luistervink.nl>-project, dat zich richt o
 - **Top 25 aller tijden**: Voeg een overzicht toe van de 25 meest gespotte vogels sinds het begin van de registratie.
 - **Ansible Playbook**: Automatisch een host inrichten met de applicatie inclusief een Let’s Encrypt-certificaat.
 
-<br>
-<br>
+---
 
 ## 🇬🇧 English
 
@@ -123,13 +122,13 @@ Dit project is geïnspireerd door het <luistervink.nl>-project, dat zich richt o
 - [🐦‍⬛ Requirements](#-requirements)
 - [🐣 Installation](#-installation)
 - [🦆 Project Structure](#-project-structure)
-- [🦢 API Endpoints](#-api-endpoints)
-- [🐓 Frontend](#-frontend)
-- [🦉 Backend](#-backend)
-- [🦚 Nginx](#-nginx)
+- [🐓 API Endpoints](#-api-endpoints)
+- [🦚 Frontend](#-frontend)
+- [🦢 Backend](#-backend)
+- [🦉 Nginx](#-nginx)
 - [🐦 License](#-license)
-- [🕊️ Inspiration](#inspiration)
-- [🐦‍🔥 To Do](#-to-do)
+- [🕊️ Inspiration](#%EF%B8%8F-inspiration)
+- [🦤 To Do](#-to-do)
 
 ## 🪺 Purpose
 
@@ -183,20 +182,20 @@ The goal is to provide bird enthusiasts with a simple platform to track bird act
 - **`docker-compose.yml`**: Docker Compose configuration file.
 - **`Dockerfile`**: Dockerfile for building the FastAPI backend.
 
-## 🦢 API Endpoints
+## 🐓 API Endpoints
 
 - **`/api/detections`**: Returns recent bird sightings from the past hour.
 - **`/api/status`**: Returns the status of the BirdWeather station (online/offline).
 
-## 🐓 Frontend
+## 🦚 Frontend
 
 The frontend is a **single-page application (SPA)** built with vanilla JavaScript. The frontend fetches data via the API and dynamically displays it in the interface.
 
-## 🦉 Backend
+## 🦢 Backend
 
 The backend is built with **FastAPI** and provides the API endpoints. This backend fetches data from the BirdWeather API, processes it, and delivers it to the frontend.
 
-## 🦚 Nginx
+## 🦉 Nginx
 
 **Nginx** is used for:
 
@@ -211,9 +210,9 @@ This project is licensed under the **MIT license**. See the [LICENSE](LICENSE) f
 
 This project is inspired by the <luistervink.nl> project, which focuses on monitoring and analyzing bird sounds. vogel-spotter builds on that idea by integrating observations from BirdWeather stations into a user-friendly web application.
 
-## 🐦‍🔥 To Do
+## 🦤 To Do
 
-#### Possible Extensions
+### Possible Extensions
 
 - **Daily Top 10**: Add a list of the 10 most observed birds of today.
 - **Monthly Statistics**: Show the number of observations per bird species over a month.
