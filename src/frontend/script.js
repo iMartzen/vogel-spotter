@@ -16,6 +16,9 @@ const translations = {
     unknownBird: "Onbekende vogel",
     unknownTime: "Onbekend",
     errorMessageStatus: "Kon de status niet laden.",
+    lastHeardAt: "Laatst gehoord om:",
+    collapsibleTextShow: "Klik om meer tijden te zien",
+    collapsibleTextHide: "Klik om minder tijden te zien",
   },
   en: {
     refreshButton: "🔄 Refresh",
@@ -33,6 +36,9 @@ const translations = {
     unknownBird: "Unknown bird",
     unknownTime: "Unknown",
     errorMessageStatus: "Could not load the status.",
+    lastHeardAt: "Last heard at:",
+    collapsibleTextShow: "Click to see more times",
+    collapsibleTextHide: "Click to see fewer times",
   },
 };
 
@@ -78,12 +84,11 @@ function updateLocale() {
 async function fetchBirds() {
   try {
     const locale = getCurrentLocale();
+    const t = translations[locale];
     const response = await fetch(`/api/detections?locale=${locale}`);
     const data = await response.json();
     const birdList = document.getElementById("bird-list");
     birdList.innerHTML = "";
-
-    const t = translations[locale];
 
     if (!data.detections || data.detections.length === 0) {
       const noBirds = document.createElement("li");
@@ -95,37 +100,90 @@ async function fetchBirds() {
       return;
     }
 
-    data.detections.forEach((detection) => {
+    const groupedDetections = data.detections.reduce((acc, detection) => {
+      const commonName = detection.commonName || t.unknownBird;
+      if (!acc[commonName]) {
+        acc[commonName] = [];
+      }
+      acc[commonName].push(detection);
+      return acc;
+    }, {});
+
+    Object.keys(groupedDetections).forEach((commonName) => {
       const birdCard = document.createElement("li");
       birdCard.className = "bird-card";
 
       // Bird Image
       const birdImage = document.createElement("img");
-      birdImage.src = detection.thumbnailUrl || "fallback-image.jpg";
-      birdImage.alt = detection.commonName || t.unknownBird;
+      birdImage.src =
+        groupedDetections[commonName][0].thumbnailUrl || "fallback-image.jpg";
+      birdImage.alt =
+        groupedDetections[commonName][0].commonName || t.unknownBird;
       birdImage.className = "bird-thumbnail";
 
       // Bird Info
       const birdInfo = document.createElement("div");
       birdInfo.className = "bird-info";
 
-      const birdTitle = document.createElement("h3");
-      birdTitle.textContent = detection.commonName || t.unknownBird;
+      const birdInfoHeader = document.createElement("div");
+      birdInfoHeader.className = "bird-info-header";
 
-      // Bird Time
-      const timeElement = document.createElement("div");
-      timeElement.className = "bird-time";
-      timeElement.textContent = detection.time || t.unknownTime;
+      const birdTitle = document.createElement("h3");
+      birdTitle.textContent =
+        groupedDetections[commonName][0].commonName || t.unknownBird;
+
+      const birdTime = document.createElement("p");
+      birdTime.className = "bird-time";
+      birdTime.textContent = `${t.lastHeardAt} ${
+        groupedDetections[commonName][0].time || t.unknownTime
+      }`;
+
+      // Collapsible section
+      const collapsibleSection = document.createElement("div");
+      collapsibleSection.className = "collapsible-section";
+      collapsibleSection.style.display = "none";
+
+      groupedDetections[commonName].forEach((detection, index) => {
+        if (index > 0) {
+          const detectionInfo = document.createElement("div");
+          detectionInfo.className = "detection-info";
+
+          const detectionTime = document.createElement("p");
+          detectionTime.textContent = `${detection.time || t.unknownTime}`;
+
+          detectionInfo.appendChild(detectionTime);
+          collapsibleSection.appendChild(detectionInfo);
+        }
+      });
+
+      // Collapsible text
+      const collapsibleText = document.createElement("span");
+      collapsibleText.className = "collapsible-text";
+      collapsibleText.textContent = t.collapsibleTextShow;
+
+      birdCard.addEventListener("click", () => {
+        const isCollapsed = collapsibleSection.style.display === "none";
+        collapsibleSection.style.display = isCollapsed ? "block" : "none";
+
+        // Adjust max-height for smooth interaction
+        collapsibleSection.style.maxHeight = isCollapsed ? "200px" : "0px";
+        collapsibleText.textContent = isCollapsed
+          ? t.collapsibleTextHide
+          : t.collapsibleTextShow;
+      });
 
       // Merge
-      birdInfo.appendChild(birdTitle);
+      birdInfoHeader.appendChild(birdTitle);
+      birdInfoHeader.appendChild(birdTime);
+      birdInfoHeader.appendChild(collapsibleText);
+      birdInfo.appendChild(birdInfoHeader);
       birdCard.appendChild(birdImage);
       birdCard.appendChild(birdInfo);
-      birdCard.appendChild(timeElement);
+      birdCard.appendChild(collapsibleSection);
       birdList.appendChild(birdCard);
     });
   } catch (error) {
-    console.error("Fout bij het ophalen van vogeldetecties:", error);
+    console.error(translations[getCurrentLocale()].errorMessageStatus, error);
   }
 }
 
@@ -148,7 +206,7 @@ async function fetchStatus() {
       statusIndicator.className = "status-indicator status-offline";
     }
   } catch (error) {
-    console.error("Fout bij het ophalen van de status:", error);
+    console.error(t.errorMessageStatus, error);
   }
 }
 

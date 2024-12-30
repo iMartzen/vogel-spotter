@@ -66,14 +66,13 @@ h2 {
 
 .bird-card {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: flex-start;
     background-color: var(--card-background-color);
     border-radius: var(--border-radius);
-    padding: 10px 15px;
+    padding: 10px;
     margin-bottom: 15px;
     box-shadow: var(--box-shadow);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
 }
 
 .bird-card:hover {
@@ -82,6 +81,7 @@ h2 {
 }
 
 .bird-thumbnail {
+    flex-shrink: 0;
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -90,6 +90,8 @@ h2 {
 }
 
 .bird-info {
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
 }
 
@@ -109,6 +111,25 @@ h2 {
     font-size: var(--font-size-xsmall);
     color: var(--secondary-text-color);
     white-space: nowrap;
+    margin-left: auto;
+}
+
+.bird-info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--card-background-color);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding: 10px;
+}
+
+.bird-info-header h3 {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .controls {
@@ -200,4 +221,18 @@ h2 {
     width: 15px;
     height: 15px;
     margin-right: 5px;
+}
+
+.collapsible-section {
+    margin-top: 10px;
+    overflow-y: auto;
+    max-height: 200px;
+}
+
+.collapsible-text {
+    font-size: var(--font-size-xsmall);
+    color: var(--secondary-text-color);
+    cursor: pointer;
+    white-space: nowrap;
+    margin-left: 10px;
 }
