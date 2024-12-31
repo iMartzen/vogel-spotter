@@ -9,8 +9,8 @@ Deze map bevat een Ansible-playbook om de **vogel-spotter** applicatie op te zet
 
 - [📘 Playbook](#-playbook)
 - [📂 Rollen](#-rollen)
-- [🖥️ Ondersteunde Distributies](#-ondersteunde-distributies)
-- [🛠️ Gebruik](#-gebruik)
+- [🖥️ Ondersteunde Distributies](#%EF%B8%8F-ondersteunde-distributies)
+- [🛠️ Gebruik](#%EF%B8%8F-gebruik)
 - [📜 Beschrijvingen van Rollen](#-beschrijvingen-van-rollen)
 - [🔒 HTTPS-Portal](#-https-portal)
 
@@ -97,14 +97,14 @@ This folder contains Ansible playbooks to set up and configure the **vogel-spott
 
 ## 📑 Table of Contents
 
-- [📘 Playbook](#-playbook-1)
+- [📗 Playbook](#-playbook-1)
 - [📂 Roles](#-roles)
-- [🖥️ Supported Distributions](#-supported-distributions)
-- [🛠️ Usage](#-usage)
+- [🖥️ Supported Distributions](#%EF%B8%8F-supported-distributions)
+- [🛠️ Usage](#%EF%B8%8F-usage)
 - [📜 Role Descriptions](#-role-descriptions)
 - [🔒 HTTPS-Portal](#-https-portal-1)
 
-## 📘 Playbook
+## 📗 Playbook
 
 - `playbook.yml`: Main playbook to set up the application.
 
