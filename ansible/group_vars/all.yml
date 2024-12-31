@@ -1,0 +1,16 @@
+# ansible/group_vars/all.yml
+--- 
+# Ansible 
+ansible_python_interpreter: /usr/bin/python3.12
+
+# Default system user for Ubuntu
+system_user: ubuntu
+
+# Defaults for vogel-spotter application
+app_directory: "/opt/vogel-spotter/"
+env_variables:
+  STATION_ID: "1"
+
+# Defaults for Let's encrypt 
+domain: localhost.local
+stage: staging 
