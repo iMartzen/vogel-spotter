@@ -11,6 +11,9 @@
     - name: stage
       prompt: "Enter the stage for the application ( local, staging or production) [default: staging]"
       private: false
+    - name: STATION_ID
+      prompt: "Enter the BirdWeather station ID for the application [default: 1]"
+      private: false
   roles:
     - python-bootstrap
     - system-upgrade

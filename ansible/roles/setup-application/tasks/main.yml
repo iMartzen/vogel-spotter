@@ -41,13 +41,11 @@
     dest: "{{ app_directory }}/docker-compose.yml"
     mode: "0644"
 
-- name: Ensure .env file is present
+- name: Create .env with STATION_ID
   ansible.builtin.copy:
     dest: "{{ app_directory }}/.env"
     content: |
-      {% for key, value in env_variables.items() %}
-      {{ key }}={{ value }}
-      {% endfor %}
+      STATION_ID={{ STATION_ID }}
     mode: "0644"
 
 - name: Deploy vogel-spotter systemd service

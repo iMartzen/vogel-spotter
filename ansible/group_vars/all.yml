@@ -7,9 +7,8 @@ ansible_python_interpreter: /usr/bin/python3.12
 system_user: ubuntu
 
 # Defaults for vogel-spotter application
-app_directory: "/opt/vogel-spotter/"
-env_variables:
-  STATION_ID: "1"
+app_directory: "/opt/vogel-spotter" # Be mindful: Don't add a trailing slash
+STATION_ID: 1
 
 # Defaults for Let's encrypt 
 domain: localhost.local

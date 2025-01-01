@@ -1,15 +1,13 @@
 [Unit]
-Description=vogel-spotter service
+Description=Vogel Spotter Docker Compose Service
 After=docker.service
 Requires=docker.service
 
 [Service]
-WorkingDirectory=/opt/vogel-spotter/
-ExecStartPre=/usr/bin/docker compose down --volumess --remove-orphans
-ExecStart=/usr/bin/docker compose up --build -d
-ExecStop=/usr/bin/docker compose down --volumes --remove-orphans
-Restart=always
-TimeoutStartSec=0
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/bash -c "docker compose -f {{ app_directory }}/docker-compose.yml up --build --detach"
+ExecStop=/bin/bash -c "docker compose -f {{ app_directory }}/docker-compose.yml down"
 
 [Install]
 WantedBy=multi-user.target
