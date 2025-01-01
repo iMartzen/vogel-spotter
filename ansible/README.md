@@ -1,4 +1,3 @@
-
 # 🦜 Ansible Playbook voor vogel-spotter
 
 ❗ Click here for [🇬🇧 English](#-english)
@@ -37,7 +36,7 @@ Voer het playbook uit met het volgende commando:
 ansible-playbook -i inventory.ini playbook.yml
 ```
 
-Tijdens de uitvoering wordt gevraagd om de domeinnaam en omgeving (bijvoorbeeld productie, staging) voor de applicatie op te geven.
+Tijdens de uitvoering wordt gevraagd om de domeinnaam, omgeving (bijvoorbeeld productie, staging) en BirdWeather station ID voor de applicatie op te geven. Deze waarden worden gebruikt om de applicatie correct te configureren.
 
 ## 📜 Beschrijvingen van Rollen
 
@@ -127,7 +126,7 @@ Run the playbook with the following command:
 ansible-playbook -i inventory.ini playbook.yml
 ```
 
-You will be prompted to enter the domain and environment stage (e.g., production, staging) for the application during the playbook execution.
+You will be prompted to enter the domain, environment stage (e.g., production, staging), and BirdWeather station ID for the application during the playbook execution. These values are used to configure the application correctly.
 
 ## 📜 Role Descriptions
 
