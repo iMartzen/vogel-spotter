@@ -38,6 +38,8 @@ ansible-playbook -i inventory.ini playbook.yml
 
 Tijdens de uitvoering wordt gevraagd om de domeinnaam, omgeving (bijvoorbeeld productie, staging) en BirdWeather station ID voor de applicatie op te geven. Deze waarden worden gebruikt om de applicatie correct te configureren.
 
+Je kunt ook de standaardwaarden voor deze variabelen instellen in het bestand [`group_vars/all.yml`](group_vars/all.yml). Dit bestand bevat standaardinstellingen voor de applicatie en kan worden aangepast aan je behoeften.
+
 ## 📜 Beschrijvingen van Rollen
 
 ### [python-bootstrap](roles/python-bootstrap)
@@ -78,11 +80,7 @@ Kenmerken:
 - Kopieert de applicatiecode naar het doelsysteem.
 - Richt een Python virtual environment in.
 - Configureert en activeert de vogel-spotter systemd-service.
-- Genereert een `.env`-bestand met aanpasbare omgevingsvariabelen.
-
-Gebruik:
-
-Je kunt de `.env`-variabelen voor de applicatie definiëren in `vars/main.yml`. Deze variabelen worden automatisch geschreven naar het `.env`-bestand in de applicatiemap tijdens de installatie.
+- Genereert een `.env`-bestand met het Birdweather station ID
 
 ## 🔒 HTTPS-Portal
 
@@ -128,6 +126,8 @@ ansible-playbook -i inventory.ini playbook.yml
 
 You will be prompted to enter the domain, environment stage (e.g., production, staging), and BirdWeather station ID for the application during the playbook execution. These values are used to configure the application correctly.
 
+You can also set default values for these variables in the [`group_vars/all.yml`](group_vars/all.yml) file. This file contains default settings for the application and can be customized to suit your needs.
+
 ## 📜 Role Descriptions
 
 ### [python-bootstrap](roles/python-bootstrap)
@@ -168,11 +168,7 @@ Features:
 - Copies application code to the target system.
 - Sets up a Python virtual environment.
 - Configures and enables the vogel-spotter systemd service.
-- Generates a `.env` file with customizable environment variables.
-
-Usage:
-
-You can define the `.env` variables for the application by setting the `env_variables` in `vars/main.yml`. These variables are automatically written to the `.env` file in the application directory during setup.
+- Generates a `.env` file with the Birdweather station ID
 
 ## 🔒 HTTPS-Portal
 
