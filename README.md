@@ -51,7 +51,7 @@ Het doel is om vogelliefhebbers een eenvoudig platform te bieden om vogelactivit
     cd vogel-spotter
     ```
 
-2. **Start het script en volg de instructies**:
+2. **Start de applicatie en volg de instructies**:
 
     ```bash
     ./run.sh
@@ -67,6 +67,18 @@ Het doel is om vogelliefhebbers een eenvoudig platform te bieden om vogelactivit
 
     ```bash
     https://$HOSTNAME.local
+    ```
+
+4. **Stop de applicatie**
+
+    ```bash
+    ./stop.sh
+    ```
+
+    *Als het script geen uitvoerrechten heeft:*
+
+    ```bash
+    chmod +x stop.sh
     ```
 
 ### 🌐 Server
@@ -165,7 +177,7 @@ The goal is to provide bird enthusiasts with a simple platform to track bird act
     cd vogel-spotter
     ```
 
-2. **Run the script and follow the instructions**:
+2. **Run the application and follow the instructions**:
 
     ```bash
     ./run.sh
@@ -181,6 +193,18 @@ The goal is to provide bird enthusiasts with a simple platform to track bird act
 
     ```bash
     https://$HOSTNAME.local
+    ```
+
+4. **Stop the application**
+
+    ```bash
+    ./stop.sh
+    ```
+
+    *If the script does not have execution permissions:*
+
+    ```bash
+    chmod +x stop.sh
     ```
 
 ### 🌐 Server
