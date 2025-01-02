@@ -21,7 +21,7 @@ services:
       - '443:443'
     environment:
       DOMAINS: 'localhost -> http://app:8000'
-      STAGE: 'local' # Don't use production until staging works
+      STAGE: 'local'
     volumes:
       - https-portal-data:/var/lib/https-portal
     networks:
