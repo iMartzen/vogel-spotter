@@ -93,7 +93,6 @@ De backend is gebouwd met **FastAPI** en biedt de API-endpoints. Deze backend ha
 - **`/api/detections`**: Geeft recente vogelwaarnemingen van het afgelopen uur terug.
 - **`/api/status`**: Geeft de status van het BirdWeather-station terug (online/offline).
 
-
 ## 🔒 HTTPS-Portal
 
 De setup maakt gebruik van [https-portal](https://github.com/SteveLTN/https-portal) in de Docker Compose-setup. HTTPS-Portal is een volledig geautomatiseerde HTTPS-server, aangedreven door Nginx, Let's Encrypt en Docker. Het vereenvoudigt het verkrijgen en vernieuwen van SSL-certificaten voor je applicatie.
@@ -227,4 +226,3 @@ This project is licensed under the **MIT license**. See the [LICENSE](LICENSE) f
 - **Daily Top 10**: Add a list of the 10 most observed birds of today.
 - **Monthly Statistics**: Show the number of observations per bird species over a month.
 - **Top 25 All Time**: Add an overview of the 25 most spotted birds since the start of the registration.
-- **Ansible Playbook**: Automatically set up a host with the application including a Let’s Encrypt certificate.
