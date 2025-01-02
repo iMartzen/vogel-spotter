@@ -81,7 +81,3 @@
     enabled: true
   register: docker_status
   failed_when: false
-
-- name: Print Docker status
-  ansible.builtin.debug:
-    msg: "{{ docker_status.status }}"
