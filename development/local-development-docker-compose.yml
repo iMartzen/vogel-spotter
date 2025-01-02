@@ -1,12 +1,12 @@
 services:
   app:
     build:
-      context: .
+      context: ../.
       dockerfile: Dockerfile
     env_file:
-      - .env
+      - ../.env
     volumes:
-      - ./src:/app
+      - ../src:/app
     ports:
       - '8000:8000'
     networks:
@@ -20,7 +20,7 @@ services:
       - '80:80'
       - '443:443'
     environment:
-      DOMAINS: 'mbpp.local -> http://app:8000'
+      DOMAINS: 'localhost -> http://app:8000'
       STAGE: 'local' # Don't use production until staging works
     volumes:
       - https-portal-data:/var/lib/https-portal
