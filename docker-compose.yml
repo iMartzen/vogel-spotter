@@ -1,12 +1,12 @@
 services:
   app:
     build:
-      context: ../.
+      context: .
       dockerfile: Dockerfile
     env_file:
-      - ../.env
+      - .env
     volumes:
-      - ../src:/app
+      - ./src:/app
     ports:
       - '8000:8000'
     networks:
