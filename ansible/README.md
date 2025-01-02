@@ -9,6 +9,11 @@ Deze map bevat een Ansible-playbook om de **vogel-spotter** applicatie op te zet
 - [📘 Playbook](#-playbook)
 - [📂 Rollen](#-rollen)
 - [🖥️ Ondersteunde Distributies](#%EF%B8%8F-ondersteunde-distributies)
+- [📋 Vereisten](#-vereisten)
+- [👩‍💻 Ansible Installatie Instructies](#-ansible-installatie-instructies)
+  - [🖥️ Windows](-windows)
+  - [🐧 Linux (Debian/Ubuntu)](-linux)
+  - [🍎 macOS](-macos)
 - [🛠️ Gebruik](#%EF%B8%8F-gebruik)
 - [📜 Beschrijvingen van Rollen](#-beschrijvingen-van-rollen)
 - [🔒 HTTPS-Portal](#-https-portal)
@@ -26,19 +31,66 @@ Deze map bevat een Ansible-playbook om de **vogel-spotter** applicatie op te zet
 
 ## 🖥️ Ondersteunde Distributies
 
-- Ubuntu (voorlopig). Je bent welkom om een PR in te dienen voor ondersteuning van andere systemen.
+- Ubuntu (voorlopig).
+
+Dit betekent dat dit playbook alleen geschreven is voor servers met een Ubuntu-besturingssysteem (voorlopig). Het maakt niet uit welk systeem je gebruikt om Ansible uit te voeren, zolang de doelserver maar op Ubuntu draait. Je bent van harte welkom om een PR in te dienen voor ondersteuning van andere besturingssystemen.
+
+## 📋 Vereisten
+
+- **Ansible**: Volg de onderstaande instructies om Ansible te installeren op jouw besturingssysteem.
+
+## 👩‍💻 Ansible Installatie Instructies
+
+### 🖥️ Windows
+
+1. Installeer de Windows Subsystem for Linux (WSL).
+2. Open de Microsoft Store en installeer een Linux-distributie (bijvoorbeeld Ubuntu).
+3. Start de WSL en voer het volgende commando uit om Ansible te installeren:
+
+    ```bash
+    sudo apt update
+    sudo apt install ansible -y
+    ```
+
+### 🐧 Linux (Debian/Ubuntu)
+
+1. Update je pakketbeheer en installeer Ansible:
+
+    ```bash
+    sudo apt update
+    sudo apt install ansible -y
+    ```
+
+### 🍎 macOS
+
+1. Installeer Homebrew als je dit nog niet hebt:
+
+    ```bash
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    ```
+
+2. Gebruik Homebrew om Ansible te installeren:
+
+    ```bash
+    brew install ansible
+    ```
 
 ## 🛠️ Gebruik
 
-Voer het playbook uit met het volgende commando:
+1. **Voer het playbook uit** met het volgende commando:
 
-```bash
-ansible-playbook -i inventory.ini playbook.yml
-```
+    ```bash
+    ansible-playbook -i inventory.ini playbook.yml
+    ```
 
-Tijdens de uitvoering wordt gevraagd om de domeinnaam, omgeving (bijvoorbeeld productie, staging) en BirdWeather station ID voor de applicatie op te geven. Deze waarden worden gebruikt om de applicatie correct te configureren.
+2. Tijdens de uitvoering wordt gevraagd om:
+   - **Domeinnaam**
+   - **Omgeving** (bijvoorbeeld productie of staging)
+   - **BirdWeather station ID**
 
-Je kunt ook de standaardwaarden voor deze variabelen instellen in het bestand [`group_vars/all.yml`](group_vars/all.yml). Dit bestand bevat standaardinstellingen voor de applicatie en kan worden aangepast aan je behoeften.
+   Deze waarden worden gebruikt om de applicatie correct te configureren.
+
+3. Je kunt ook de standaardwaarden voor deze variabelen instellen in het bestand [`group_vars/all.yml`](group_vars/all.yml). Dit bestand bevat standaardinstellingen voor de applicatie en kan worden aangepast aan je behoeften.
 
 ## 📜 Beschrijvingen van Rollen
 
@@ -97,6 +149,11 @@ This folder contains Ansible playbooks to set up and configure the **vogel-spott
 - [📗 Playbook](#-playbook-1)
 - [📂 Roles](#-roles)
 - [🖥️ Supported Distributions](#%EF%B8%8F-supported-distributions)
+- [📋 Requirements](#-requirements)
+- [👩‍💻 Ansible Installation Instructions](#-ansible-installation-instructions)
+  - [🖥️ Windows](-windows)
+  - [🐧 Linux (Debian/Ubuntu)](-linux)
+  - [🍎 macOS](-macos)
 - [🛠️ Usage](#%EF%B8%8F-usage)
 - [📜 Role Descriptions](#-role-descriptions)
 - [🔒 HTTPS-Portal](#-https-portal-1)
@@ -115,6 +172,48 @@ This folder contains Ansible playbooks to set up and configure the **vogel-spott
 ## 🖥️ Supported Distributions
 
 - Ubuntu (for now). Feel free to create a PR to support other families.
+
+This means that this playbook is currently designed only for servers running an Ubuntu operating system. It does not matter which system you use to run Ansible, as long as the target server is running Ubuntu. Contributions via PR to support other operating systems are welcome!
+
+## 📋 Requirements
+
+- **Ansible installed**: Follow the instructions below to install Ansible on your operating system.
+
+### 👩‍💻 Ansible Installation Instructions
+
+#### 🖥️ Windows
+
+1. Install Windows Subsystem for Linux (WSL).
+2. Open the Microsoft Store and install a Linux distribution (e.g., Ubuntu).
+3. Start WSL and run the following command to install Ansible:
+
+    ```bash
+    sudo apt update
+    sudo apt install ansible -y
+    ```
+
+#### 🐧 Linux (Debian/Ubuntu)
+
+1. Update your package manager and install Ansible:
+
+    ```bash
+    sudo apt update
+    sudo apt install ansible -y
+    ```
+
+#### 🍎 macOS
+
+1. Install Homebrew if you haven't already:
+
+    ```bash
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    ```
+
+2. Use Homebrew to install Ansible:
+
+    ```bash
+    brew install ansible
+    ```
 
 ## 🛠️ Usage
 
