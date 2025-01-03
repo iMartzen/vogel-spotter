@@ -57,11 +57,7 @@ Het doel is om vogelliefhebbers een eenvoudig platform te bieden om vogelactivit
     ./run.sh
     ```
 
-    *Als het script geen uitvoerrechten heeft:*
-
-    ```bash
-    chmod +x run.sh
-    ```
+    *Als het script geen uitvoerrechten heeft:* `chmod +x run.sh`
 
 3. **Open je browser** en ga naar:
 
@@ -75,11 +71,7 @@ Het doel is om vogelliefhebbers een eenvoudig platform te bieden om vogelactivit
     ./stop.sh
     ```
 
-    *Als het script geen uitvoerrechten heeft:*
-
-    ```bash
-    chmod +x stop.sh
-    ```
+    *Als het script geen uitvoerrechten heeft:* `chmod +x stop.sh`
 
 ### 🌐 Server
 
@@ -183,11 +175,7 @@ The goal is to provide bird enthusiasts with a simple platform to track bird act
     ./run.sh
     ```
 
-    *If the script does not have execution permissions:*
-
-    ```bash
-    chmod +x run.sh
-    ```
+    *If the script does not have execution permissions:* `chmod +x run.sh`
 
 3. **Open your browser** and navigate to:
 
@@ -201,11 +189,7 @@ The goal is to provide bird enthusiasts with a simple platform to track bird act
     ./stop.sh
     ```
 
-    *If the script does not have execution permissions:*
-
-    ```bash
-    chmod +x stop.sh
-    ```
+    *If the script does not have execution permissions:* `chmod +x stop.sh`
 
 ### 🌐 Server
 
