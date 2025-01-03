@@ -178,3 +178,7 @@ inventory.ini
 
 # Back-up files
 *.old
+
+# Linter files 
+.flake8
+.markdownlint.json

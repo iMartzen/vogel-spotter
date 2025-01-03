@@ -12,6 +12,7 @@
 - [🐣 Installatie](#-installatie)
   - [💻 Lokaal](#-lokaal)
   - [🌐 Server](#-server)
+  - [🪹 Voorbeeld .env bestand](#-voorbeeld-env-bestand)
 - [🦆 Projectstructuur](#-projectstructuur)
 - [🐓 Frontend](#-frontend)
 - [🦉 Backend](#-backend)
@@ -77,6 +78,12 @@ Het doel is om vogelliefhebbers een eenvoudig platform te bieden om vogelactivit
 
 Gebruik het [Ansible-playbook](/ansible/playbook.yml) om de applicatie te implementeren op een server. Raadpleeg de [README.md](/ansible/README.md) voor vereisten en installatie-instructies.
 
+### 🪹 Voorbeeld `.env` bestand
+
+```bash
+STATION_ID=1
+```
+
 ## 🦆 Projectstructuur
 
 - **`src/`**: Bevat de broncode van de FastAPI-backend en de frontend.
@@ -131,6 +138,7 @@ Dit project is gelicentieerd onder de **MIT-licentie**. Zie het bestand [LICENSE
 - [🐣 Installation](#-installation)
   - [💻 Locally](#-locally)
   - [🌐 Server](#-server)
+  - [🪹 Example .env file](#-example-env-file)
 - [🦆 Project Structure](#-project-structure)
 - [🦚 Frontend](#-frontend)
 - [🦢 Backend](#-backend)
@@ -194,6 +202,12 @@ The goal is to provide bird enthusiasts with a simple platform to track bird act
 ### 🌐 Server
 
 Use the [Ansible-playbook](/ansible/playbook.yml) to deploy the application on a server. Refer to the [README.md](/ansible/README.md) for requirements and detailed installation instructions.
+
+### 🪹 Example `.env` file
+
+```bash
+STATION_ID=1
+```
 
 ## 🦆 Project Structure
 
