@@ -1,0 +1,83 @@
+# roles/install-docker/tasks/main.yml
+
+- name: Download Docker installation script
+  ansible.builtin.get_url:
+    url: https://get.docker.com
+    dest: /tmp/get-docker.sh
+    mode: '0755'
+
+- name: Run Docker installation script
+  ansible.builtin.command: sh /tmp/get-docker.sh
+  args:
+    creates: /usr/bin/docker
+
+- name: Add user to docker group
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: true
+
+- name: Create directory for Docker systemd service override
+  ansible.builtin.file:
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+    mode: '0755'
+
+- name: Create systemd override configuration for Docker
+  ansible.builtin.copy:
+    dest: /etc/systemd/system/docker.service.d/override.conf
+    content: |
+      [Service]
+      ExecStart=
+      ExecStart=/usr/bin/dockerd
+    mode: '0644'
+
+- name: Create Docker daemon configuration
+  ansible.builtin.copy:
+    dest: /etc/docker/daemon.json
+    content: |
+      {
+        "hosts": [
+          "unix:///var/run/docker.sock",
+          "tcp://0.0.0.0:2375"
+        ],
+        "metrics-addr": "0.0.0.0:9323",
+        "experimental": true,
+        "debug" : false
+      }
+    mode: '0644'
+
+- name: Ensure kernel boot parameters include cgroup memory settings
+  ansible.builtin.lineinfile:
+    path: /etc/default/grub
+    regexp: '^GRUB_CMDLINE_LINUX='
+    line: 'GRUB_CMDLINE_LINUX="cgroup_enable=memory cgroup_memory=1"'
+    backrefs: true
+
+- name: Update GRUB configuration
+  ansible.builtin.command:
+    cmd: update-grub
+    creates: /boot/grub/grub.cfg
+  become: true
+
+- name: Reboot the system to apply kernel parameter changes
+  ansible.builtin.reboot:
+    reboot_timeout: 300
+
+- name: Reload systemd daemon
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: Restart Docker service
+  ansible.builtin.systemd:
+    name: docker
+    state: restarted
+    enabled: true
+
+- name: Verify Docker service status
+  ansible.builtin.systemd:
+    name: docker
+    state: started
+    enabled: true
+  register: docker_status
+  failed_when: false

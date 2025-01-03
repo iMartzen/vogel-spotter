@@ -1,0 +1,21 @@
+# ansible/playbook.yml
+---
+- name: Setup vogel-spotter application
+  hosts: all
+  become: true
+  gather_facts: false
+  vars_prompt:
+    - name: domain
+      prompt: "Enter the fully qualified domain name (e.g., example.com) for the application [default: localhost.local]"
+      private: false
+    - name: stage
+      prompt: "Enter the stage for the application ( local, staging or production) [default: staging]"
+      private: false
+    - name: STATION_ID
+      prompt: "Enter the BirdWeather station ID for the application [default: 1]"
+      private: false
+  roles:
+    - python-bootstrap
+    - system-upgrade
+    - setup-docker
+    - setup-application

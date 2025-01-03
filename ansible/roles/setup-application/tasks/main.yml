@@ -1,0 +1,70 @@
+# roles/setup-application/tasks/main.yml
+---
+
+- name: Create application directory
+  ansible.builtin.file:
+    path: "{{ app_directory }}"
+    state: directory
+    mode: "0755"
+
+- name: Install rsync
+  ansible.builtin.package:
+    name: rsync
+    state: present
+
+- name: Copy application source code
+  tags: redeploy
+  ansible.posix.synchronize:
+    src: "../src"
+    dest: "{{ app_directory }}"
+    delete: true
+
+- name: Copy Pipfile
+  ansible.posix.synchronize:
+    src: "../Pipfile"
+    dest: "{{ app_directory }}"
+  register: copy_pipfile
+
+- name: Copy Pipfile.lock
+  ansible.posix.synchronize:
+    src: "../Pipfile.lock"
+    dest: "{{ app_directory }}"
+
+- name: Copy Dockerfile
+  ansible.posix.synchronize:
+    src: "../Dockerfile"
+    dest: "{{ app_directory }}"
+
+- name: Bootstrap docker-compose.yml
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ app_directory }}/docker-compose.yml"
+    mode: "0644"
+
+- name: Create .env with STATION_ID
+  ansible.builtin.copy:
+    dest: "{{ app_directory }}/.env"
+    content: |
+      STATION_ID={{ STATION_ID }}
+    mode: "0644"
+
+- name: Deploy vogel-spotter systemd service
+  tags: redeploy
+  ansible.builtin.template:
+    src: vogel-spotter.service.j2
+    dest: /etc/systemd/system/vogel-spotter.service
+    mode: "0644"
+    owner: root
+    group: root
+
+- name: Reload systemd to apply changes
+  tags: redeploy
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: Enable and start vogel-spotter service
+  tags: redeploy
+  ansible.builtin.systemd:
+    name: vogel-spotter
+    enabled: true
+    state: restarted

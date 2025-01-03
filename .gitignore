@@ -169,3 +169,12 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Visual Studio Code
+.vscode/
+
+# Ansible
+inventory.ini
+
+# Back-up files
+*.old

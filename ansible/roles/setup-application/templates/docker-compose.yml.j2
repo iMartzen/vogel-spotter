@@ -20,8 +20,8 @@ services:
       - '80:80'
       - '443:443'
     environment:
-      DOMAINS: 'localhost -> http://app:8000'
-      STAGE: 'local'
+      DOMAINS: '{{ domain }} -> http://app:8000'
+      STAGE: '{{ stage }}' # Don't use production until staging works
     volumes:
       - https-portal-data:/var/lib/https-portal
     networks:
