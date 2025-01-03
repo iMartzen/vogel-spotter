@@ -195,5 +195,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   setInterval(fetchBirds, 600000);
-  setInterval(fetchStatus, 60000);
+  setInterval(fetchStatus, 600000);
 });
