@@ -3,8 +3,8 @@ const translations = {
   nl: {
     refreshButton: "🔄 Verversen",
     statusIndicatorFetching: "Status ophalen...",
-    statusOnline: "🟢 Online",
-    statusOffline: "🔴 Offline",
+    statusRecent: "🟢 Recente waarneming",
+    statusNoRecent: "🔴 Geen waarneming",
     localeToggleButton: "🇬🇧 English",
     themeToggleButtonDark: "🌙 Donkere modus",
     themeToggleButtonLight: "☀️ Lichte modus",
@@ -20,8 +20,8 @@ const translations = {
   en: {
     refreshButton: "🔄 Refresh",
     statusIndicatorFetching: "Fetching status...",
-    statusOnline: "🟢 Online",
-    statusOffline: "🔴 Offline",
+    statusRecent: "🟢 Recent observation",
+    statusNoRecent: "🔴 No observation",
     localeToggleButton: "🇳🇱 Nederlands",
     themeToggleButtonDark: "🌙 Dark Mode",
     themeToggleButtonLight: "☀️ Light Mode",
@@ -140,11 +140,11 @@ async function fetchStatus() {
 
     if (data.status) {
       // Online
-      statusIndicator.innerHTML = t.statusOnline;
+      statusIndicator.innerHTML = t.statusRecent;
       statusIndicator.className = "status-indicator status-online";
     } else {
       // Offline
-      statusIndicator.innerHTML = t.statusOffline;
+      statusIndicator.innerHTML = t.statusNoRecent;
       statusIndicator.className = "status-indicator status-offline";
     }
   } catch (error) {
