@@ -20,7 +20,7 @@ echo -e "\033[37m✅ Reverted stage in $DOCKER_COMPOSE_FILE to: local\033[0m"
 # Restore the original .env file
 if [[ -f ".env.old" ]]; then
     mv .env.old .env
-    echo -e "\033[33m✅ Restored the original .env file\033[0m"
+    echo -e "\033[37m✅ Restored the original .env file\033[0m"
 else
     echo -e "\033[37m✅ No backup .env file found to restore\033[0m"
 fi
