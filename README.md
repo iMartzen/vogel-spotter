@@ -10,6 +10,7 @@
 - [🐤 Functies](#-functies)
 - [🐦‍⬛ Vereisten](#-vereisten)
 - [🐣 Installatie](#-installatie)
+  - [▲ Vercel](#-vercel)
   - [💻 Lokaal](#-lokaal)
   - [🌐 Server](#-server)
   - [🪹 Voorbeeld .env bestand](#-voorbeeld-env-bestand)
@@ -42,6 +43,14 @@ Het doel is om vogelliefhebbers een eenvoudig platform te bieden om vogelactivit
 - **Docker Compose**: Vereist om meerdere containers tegelijk te beheren.
 
 ## 🐣 Installatie
+
+### ▲ Vercel
+
+Het is mogelijk om de applicatie te implementeren op [Vercel](https://vercel.com/home). Vercel is een platform voor frontend-hosting en serverloze functies. Klik op de onderstaande knop om de implementatie te starten:
+
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/iMartzen/vogel-spotter)
+
+Vergeet niet om de omgevingsvariabele toe te voegen aan de setup. Raadpleeg de [Vercel documentatie](https://vercel.com/docs/projects/environment-variables) voor meer informatie.
 
 ### 💻 Lokaal
 
@@ -136,6 +145,7 @@ Dit project is gelicentieerd onder de **MIT-licentie**. Zie het bestand [LICENSE
 - [🐤 Features](#-features)
 - [🐦‍⬛ Requirements](#-requirements)
 - [🐣 Installation](#-installation)
+  - [▲ Vercel](#-vercel)
   - [💻 Locally](#-locally)
   - [🌐 Server](#-server)
   - [🪹 Example .env file](#-example-env-file)
@@ -167,6 +177,14 @@ The goal is to provide bird enthusiasts with a simple platform to track bird act
 - **Docker Compose**: Required to manage multiple containers simultaneously.
 
 ## 🐣 Installation
+
+### ▲ Vercel
+
+It is also possible to deploy the application on [Vercel](https://vercel.com/home). Vercel is a platform for frontend hosting and serverless functions. Click the button below to start the deployment:
+
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/iMartzen/vogel-spotter)
+
+Don't forget to add the environment variable to the setup. Refer to the [Vercel documentation](https://vercel.com/docs/projects/environment-variables) for more information.
 
 ### 💻 Locally
 
