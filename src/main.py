@@ -2,6 +2,7 @@ import os
 import datetime
 import requests
 
+from pathlib import Path
 from dotenv import load_dotenv
 from fastapi import FastAPI, Query
 from fastapi.responses import JSONResponse
@@ -78,4 +79,8 @@ def get_status():
         )
 
 
-app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
+app.mount(
+    "/",
+    StaticFiles(directory=Path(__file__).parent / "frontend", html=True),
+    name="frontend",
+)
