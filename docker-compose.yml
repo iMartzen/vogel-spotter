@@ -15,7 +15,7 @@ services:
   https-portal:
     depends_on:
       - app
-    image: steveltn/https-portal:1
+    image: docker.io/steveltn/https-portal:1
     ports:
       - '80:80'
       - '443:443'
