@@ -17,11 +17,11 @@ services:
       - app
     image: docker.io/steveltn/https-portal:1
     ports:
-      - '80:80'
-      - '443:443'
+      - "${DOCKER_PUBLIC_PORT_HTTP}80"
+      - "${DOCKER_PUBLIC_PORT_HTTPS}443"
     environment:
-      DOMAINS: 'localhost -> http://app:8000'
-      STAGE: 'local'
+      DOMAINS: "${HOSTNAME} -> http://app:8000"
+      STAGE: "${STAGE}"
     volumes:
       - https-portal-data:/var/lib/https-portal
     networks:
