@@ -119,7 +119,7 @@ De setup maakt gebruik van [https-portal](https://github.com/SteveLTN/https-port
 
 ## 🕊️ Inspiratie
 
-Dit project is geïnspireerd door het <luistervink.nl>-project, dat zich richt op het monitoren en analyseren van vogelgeluiden. vogel-spotter bouwt voort op dat idee door waarnemingen van BirdWeather-stations te integreren in een gebruiksvriendelijke webapplicatie.
+Dit project is geïnspireerd door het [luistervink.nl](https://www.luistervink.nl) project, dat zich richt op het monitoren en analyseren van vogelgeluiden. vogel-spotter bouwt voort op dat idee door waarnemingen van BirdWeather-stations te integreren in een gebruiksvriendelijke webapplicatie.
 
 ## 🐦 Licentie
 
@@ -253,7 +253,7 @@ The setup uses [https-portal](https://github.com/SteveLTN/https-portal) in the D
 
 ## 🕊️ Inspiration
 
-This project is inspired by the <luistervink.nl> project, which focuses on monitoring and analyzing bird sounds. vogel-spotter builds on that idea by integrating observations from BirdWeather stations into a user-friendly web application.
+This project is inspired by the [luistervink.nl](https://www.luistervink.nl) project, which focuses on monitoring and analyzing bird sounds. vogel-spotter builds on that idea by integrating observations from BirdWeather stations into a user-friendly web application.
 
 ## 🐦 License
 
