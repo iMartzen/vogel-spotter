@@ -1,0 +1,27 @@
+# roles/update-system/tasks/main.yml
+---
+- name: Update APT package list
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Upgrade all APT packages
+  ansible.builtin.apt:
+    upgrade: dist
+    autoremove: true
+    autoclean: true
+
+- name: Check if reboot is required
+  ansible.builtin.stat:
+    path: /var/run/reboot-required
+  register: stat_reboot_required
+
+- name: Notify all logged-in users of the upcoming reboot
+  ansible.builtin.command:
+    cmd: wall "System is going down for a reboot"
+  changed_when: false
+  when: stat_reboot_required.stat.exists
+
+- name: Reboot the server
+  ansible.builtin.reboot:
+    reboot_timeout: 300 # Wait for up to 5 minutes for the reboot to complete
+  when: stat_reboot_required.stat.exists

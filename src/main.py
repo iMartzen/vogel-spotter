@@ -2,6 +2,7 @@ import os
 import datetime
 import requests
 
+from pathlib import Path
 from dotenv import load_dotenv
 from fastapi import FastAPI, Query
 from fastapi.responses import JSONResponse
@@ -50,27 +51,27 @@ def get_detections(locale: str = Query("nl")):
         )
 
 
-@app.get("/api/status")
-def get_status():
+@app.get("/api/top25")
+def get_top25(locale: str = Query("nl")):
     try:
         response = requests.get(
-            f"https://app.birdweather.com/api/v1/stations/{STATION_ID}"
+            f"https://app.birdweather.com/api/v1/stations/{STATION_ID}/species?locale={locale}&period=all&limit=25&order=detections_count&sort=desc"
         )
         response.raise_for_status()
-        status_data = response.json()
-        latest_detection = status_data.get("latestValidDetectionAt", "")
-        if latest_detection:
-            latest_detection_time = datetime.datetime.strptime(
-                latest_detection, "%Y-%m-%dT%H:%M:%S.%f%z"
+        bird_data = response.json()
+        formatted_data = []
+        for species in bird_data.get("species", []):
+            formatted_data.append(
+                {
+                    "commonName": species.get(
+                        "commonName",
+                        "Unknown bird" if locale == "en" else "Onbekende vogel",
+                    ),
+                    "thumbnailUrl": species.get("thumbnailUrl", "fallback-image.jpg"),
+                    "count": species.get("detections", {}).get("total", 0),
+                }
             )
-            one_hour_ago = datetime.datetime.now(
-                datetime.timezone.utc
-            ) - datetime.timedelta(hours=1)
-            is_online = latest_detection_time > one_hour_ago
-        else:
-            is_online = False
-
-        return JSONResponse(content={"status": is_online})
+        return JSONResponse(content={"top25": formatted_data})
     except requests.exceptions.RequestException:
         return JSONResponse(
             content={"error": "Er is een fout opgetreden bij het ophalen van data"},
@@ -78,4 +79,8 @@ def get_status():
         )
 
 
-app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
+app.mount(
+    "/",
+    StaticFiles(directory=Path(__file__).parent / "frontend", html=True),
+    name="frontend",
+)

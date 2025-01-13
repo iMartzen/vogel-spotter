@@ -6,8 +6,8 @@
     --card-hover-background-color: #e9ecef;
     --online-color: #28a745;
     --offline-color: #dc3545;
-    --button-background-color: #5d9748;
-    --button-hover-background-color: #4a7a3a;
+    --button-background-color: #3e622c;
+    --button-hover-background-color: #5d9748;
     --button-text-color: #e0e0e0;
     --font-family: 'Arial', sans-serif;
     --font-size-large: 2.5rem;
@@ -27,8 +27,8 @@
     --card-hover-background-color: #292929;
     --online-color: #28a745;
     --offline-color: #dc3545;
-    --button-background-color: #5d9748;
-    --button-hover-background-color: #4a7a3a;
+    --button-background-color: #3e622c;
+    --button-hover-background-color: #5d9748;
     --button-text-color: #ffffff;
 }
 
@@ -107,7 +107,7 @@ h2 {
     color: var (--secondary-text-color);
 }
 
-.bird-time {
+.bird-time, .bird-count {
     font-size: var(--font-size-xsmall);
     color: var(--secondary-text-color);
     white-space: nowrap;
@@ -141,22 +141,8 @@ h2 {
     flex-wrap: wrap;
 }
 
-.status-indicator {
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-}
 
-.status-online {
-    color: var(--online-color);
-}
-
-.status-offline {
-    color: var(--offline-color);
-}
-
-.refresh-button, .theme-toggle-button, .locale-toggle-button {
+.refresh-button, .theme-toggle-button, .locale-toggle-button, .view-toggle-button {
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -167,7 +153,7 @@ h2 {
     transition: background-color 0.2s ease;
 }
 
-.refresh-button:hover, .theme-toggle-button:hover, .locale-toggle-button:hover {
+.refresh-button:hover, .theme-toggle-button:hover, .locale-toggle-button:hover, .view-toggle-button:hover {
     background-color: var(--button-hover-background-color);
 }
 
