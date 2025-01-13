@@ -161,6 +161,7 @@ async function fetchTop25Birds() {
       return;
     }
 
+    index = 0
     data.top25.forEach((bird) => {
       const birdCard = document.createElement("li");
       birdCard.className = "bird-card";
@@ -176,7 +177,8 @@ async function fetchTop25Birds() {
       birdInfo.className = "bird-info";
 
       const birdTitle = document.createElement("h3");
-      birdTitle.textContent = bird.commonName || t.unknownBird;
+      index += 1
+      birdTitle.textContent = `${index}. ${bird.commonName}` || `${index}.  ${t.unknownBird}`;
 
       // Bird Count
       const countElement = document.createElement("div");
