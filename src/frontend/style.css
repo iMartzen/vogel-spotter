@@ -146,7 +146,7 @@ h2 {
     transition: background-color 0.2s ease;
 }
 
-.refresh-button:hover, .theme-toggle-button:hover, .locale-toggle-button:hover, view-toggle-button:hover {
+.refresh-button:hover, .theme-toggle-button:hover, .locale-toggle-button:hover, .view-toggle-button:hover {
     background-color: var(--button-hover-background-color);
 }
 
