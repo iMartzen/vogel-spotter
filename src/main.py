@@ -51,6 +51,34 @@ def get_detections(locale: str = Query("nl")):
         )
 
 
+@app.get("/api/top25")
+def get_top25(locale: str = Query("nl")):
+    try:
+        response = requests.get(
+            f"https://app.birdweather.com/api/v1/stations/{STATION_ID}/species?locale={locale}&period=all&limit=25&order=detections_count&sort=desc"
+        )
+        response.raise_for_status()
+        bird_data = response.json()
+        formatted_data = []
+        for species in bird_data.get("species", []):
+            formatted_data.append(
+                {
+                    "commonName": species.get(
+                        "commonName",
+                        "Unknown bird" if locale == "en" else "Onbekende vogel",
+                    ),
+                    "thumbnailUrl": species.get("thumbnailUrl", "fallback-image.jpg"),
+                    "count": species.get("detections", {}).get("total", 0),
+                }
+            )
+        return JSONResponse(content={"top25": formatted_data})
+    except requests.exceptions.RequestException:
+        return JSONResponse(
+            content={"error": "Er is een fout opgetreden bij het ophalen van data"},
+            status_code=500,
+        )
+
+
 @app.get("/api/status")
 def get_status():
     try:

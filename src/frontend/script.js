@@ -16,6 +16,9 @@ const translations = {
     unknownBird: "Onbekende vogel",
     unknownTime: "Onbekend",
     errorMessageStatus: "Kon de status niet laden.",
+    top25Button: "📊 Top 25",
+    recentButton: "⏱️ Recent",
+    top25Title: "Top 25 meest waargenomen vogels",
   },
   en: {
     refreshButton: "🔄 Refresh",
@@ -33,8 +36,13 @@ const translations = {
     unknownBird: "Unknown bird",
     unknownTime: "Unknown",
     errorMessageStatus: "Could not load the status.",
+    top25Button: "📊 Top 25",
+    recentButton: "⏱️ Recent",
+    top25Title: "Top 25 most spotted birds",
   },
 };
+
+let currentView = "recent";
 
 function getCurrentLocale() {
   return document.documentElement.getAttribute("locale") || "nl";
@@ -56,6 +64,9 @@ function updateLocale() {
 
   document.getElementById("locale-toggle-button").textContent =
     t.localeToggleButton;
+    
+  document.getElementById("view-toggle-button").textContent =
+    currentView === "recent" ? t.top25Button : t.recentButton;
 
   // Theme
   const currentTheme = document.documentElement.getAttribute("data-theme");
@@ -66,8 +77,9 @@ function updateLocale() {
 
   // Title
   document.querySelector(".birds h1").textContent = t.h1;
-  document.querySelector(".birds h2").textContent = t.h2;
-
+  document.querySelector(".birds h2").textContent =
+    currentView === "recent" ? t.h2 : t.top25Title; 
+    
   // Footer
   document.querySelector(".footer-left a").textContent = t.footerLeft;
   document.querySelector(
@@ -129,6 +141,62 @@ async function fetchBirds() {
   }
 }
 
+async function fetchTop25Birds() {
+  try {
+    const locale = getCurrentLocale();
+    const response = await fetch(`/api/top25?locale=${locale}`);
+    const data = await response.json();
+    const birdList = document.getElementById("bird-list");
+    birdList.innerHTML = "";
+
+    const t = translations[locale];
+
+    if (!data.top25 || data.top25.length === 0) {
+      const noBirds = document.createElement("li");
+      noBirds.className = "bird-card";
+      const noBirdsText = document.createElement("p");
+      noBirdsText.textContent = t.noDetections;
+      noBirds.appendChild(noBirdsText);
+      birdList.appendChild(noBirds);
+      return;
+    }
+
+    index = 0
+    data.top25.forEach((bird) => {
+      const birdCard = document.createElement("li");
+      birdCard.className = "bird-card";
+
+      // Bird Image
+      const birdImage = document.createElement("img");
+      birdImage.src = bird.thumbnailUrl || "fallback-image.jpg";
+      birdImage.alt = bird.commonName || t.unknownBird;
+      birdImage.className = "bird-thumbnail";
+
+      // Bird Info
+      const birdInfo = document.createElement("div");
+      birdInfo.className = "bird-info";
+
+      const birdTitle = document.createElement("h3");
+      index += 1
+      birdTitle.textContent = `${index}. ${bird.commonName}` || `${index}.  ${t.unknownBird}`;
+
+      // Bird Count
+      const countElement = document.createElement("div");
+      countElement.className = "bird-count";
+      countElement.textContent = `${bird.count}`;
+
+      // Merge
+      birdInfo.appendChild(birdTitle);
+      birdCard.appendChild(birdImage);
+      birdCard.appendChild(birdInfo);
+      birdCard.appendChild(countElement);
+      birdList.appendChild(birdCard);
+    });
+  } catch (error) {
+    console.error("Fout bij het ophalen van de top 25 vogels:", error);
+  }
+}
+
 async function fetchStatus() {
   try {
     const locale = getCurrentLocale();
@@ -153,7 +221,11 @@ async function fetchStatus() {
 }
 
 function refreshAll() {
-  fetchBirds();
+  if (currentView === "recent") {
+    fetchBirds();
+  } else {
+    fetchTop25Birds();
+  }
   fetchStatus();
   updateLocale();
 }
@@ -191,6 +263,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const currentLocale = getCurrentLocale();
       const newLocale = currentLocale === "nl" ? "en" : "nl";
       setCurrentLocale(newLocale);
+      refreshAll();
+    });
+
+  document
+    .getElementById("view-toggle-button")
+    .addEventListener("click", () => {
+      currentView = currentView === "recent" ? "top25" : "recent";
       refreshAll();
     });
 
