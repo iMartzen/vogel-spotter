@@ -31,7 +31,7 @@ Het doel is om vogelliefhebbers een eenvoudig platform te bieden om vogelactivit
 ## 🐤 Functies
 
 - Weergave van recente vogelwaarnemingen van het afgelopen uur.
-- Geeft de status van het BirdWeather-station weer (online/offline).
+- Weergave van top 25 meest waargenomen vogelsoorten op dit BirdWeather-station.
 - Responsief ontwerp geschikt voor verschillende schermformaten.
 - Ondersteuning voor dark mode voor gebruik in omgevingen met weinig licht.
 - Bevat een refresh-knop voor snelle updates.
@@ -111,7 +111,7 @@ De backend is gebouwd met **FastAPI** en biedt de API-endpoints. Deze backend ha
 ### 🦢 API Endpoints
 
 - **`/api/detections`**: Geeft recente vogelwaarnemingen van het afgelopen uur terug.
-- **`/api/status`**: Geeft de status van het BirdWeather-station terug (online/offline).
+- **`/api/top25`**: Retourneert de top 25 van meest waargenomen vogelsoorten op dit BirdWeather-station.
 
 ## 🔒 HTTPS-Portal
 
@@ -131,7 +131,6 @@ Dit project is gelicentieerd onder de **MIT-licentie**. Zie het bestand [LICENSE
 
 - **Dagelijkse top 10**: Voeg een lijst toe met de 10 meest waargenomen vogels van vandaag.
 - **Maandelijkse statistieken**: Toon het aantal waarnemingen per vogelsoort gedurende een maand.
-- **Top 25 aller tijden**: Voeg een overzicht toe van de 25 meest gespotte vogels sinds het begin van de registratie.
 
 ---
 
@@ -165,7 +164,7 @@ The goal is to provide bird enthusiasts with a simple platform to track bird act
 ## 🐤 Features
 
 - Display recent bird sightings from the past hour.
-- Show the status of the BirdWeather station (online/offline).
+- Display of the top 25 most observed bird species at this BirdWeather station.
 - Responsive design suitable for various screen sizes.
 - Support for dark mode for use in low-light environments.
 - Includes a refresh button for quick updates.
@@ -245,7 +244,7 @@ The backend is built with **FastAPI** and provides the API endpoints. This backe
 ### 🐓 API Endpoints
 
 - **`/api/detections`**: Returns recent bird sightings from the past hour.
-- **`/api/status`**: Returns the status of the BirdWeather station (online/offline).
+- **`/api/top25`**: Returns the top 25 most observed bird species at this BirdWeather station.
 
 ## 🔒 HTTPS-Portal
 
@@ -265,4 +264,3 @@ This project is licensed under the **MIT license**. See the [LICENSE](LICENSE) f
 
 - **Daily Top 10**: Add a list of the 10 most observed birds of today.
 - **Monthly Statistics**: Show the number of observations per bird species over a month.
-- **Top 25 All Time**: Add an overview of the 25 most spotted birds since the start of the registration.

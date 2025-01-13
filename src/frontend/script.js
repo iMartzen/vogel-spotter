@@ -2,9 +2,6 @@
 const translations = {
   nl: {
     refreshButton: "🔄 Verversen",
-    statusIndicatorFetching: "Status ophalen...",
-    statusRecent: "🟢 Recente waarneming",
-    statusNoRecent: "🔴 Geen waarneming",
     localeToggleButton: "🇬🇧 English",
     themeToggleButtonDark: "🌙 Donkere modus",
     themeToggleButtonLight: "☀️ Lichte modus",
@@ -12,19 +9,15 @@ const translations = {
     h2: "Recente waarnemingen van het afgelopen uur",
     footerLeft: "Project op GitHub",
     footerRight: "Met ♥︎ gemaakt door",
-    noDetections: "Geen waarnemingen in het afgelopen uur",
+    noDetections: "🔴  Geen waarnemingen in het afgelopen uur",
     unknownBird: "Onbekende vogel",
     unknownTime: "Onbekend",
-    errorMessageStatus: "Kon de status niet laden.",
     top25Button: "📊 Top 25",
     recentButton: "⏱️ Recent",
     top25Title: "Top 25 meest waargenomen vogels",
   },
   en: {
     refreshButton: "🔄 Refresh",
-    statusIndicatorFetching: "Fetching status...",
-    statusRecent: "🟢 Recent observation",
-    statusNoRecent: "🔴 No observation",
     localeToggleButton: "🇳🇱 Nederlands",
     themeToggleButtonDark: "🌙 Dark Mode",
     themeToggleButtonLight: "☀️ Light Mode",
@@ -32,10 +25,9 @@ const translations = {
     h2: "Recent sightings from the past hour",
     footerLeft: "Project on GitHub",
     footerRight: "Made with ♥︎ by",
-    noDetections: "No sightings in the past hour",
+    noDetections: "🔴  No sightings in the past hour",
     unknownBird: "Unknown bird",
     unknownTime: "Unknown",
-    errorMessageStatus: "Could not load the status.",
     top25Button: "📊 Top 25",
     recentButton: "⏱️ Recent",
     top25Title: "Top 25 most spotted birds",
@@ -59,8 +51,6 @@ function updateLocale() {
 
   // Buttons
   document.getElementById("refresh-button").textContent = t.refreshButton;
-  const statusIndicator = document.getElementById("status-indicator");
-  statusIndicator.textContent = t.statusIndicatorFetching;
 
   document.getElementById("locale-toggle-button").textContent =
     t.localeToggleButton;
@@ -197,36 +187,12 @@ async function fetchTop25Birds() {
   }
 }
 
-async function fetchStatus() {
-  try {
-    const locale = getCurrentLocale();
-    const t = translations[locale];
-    const statusIndicator = document.getElementById("status-indicator");
-
-    const response = await fetch("/api/status");
-    const data = await response.json();
-
-    if (data.status) {
-      // Online
-      statusIndicator.innerHTML = t.statusRecent;
-      statusIndicator.className = "status-indicator status-online";
-    } else {
-      // Offline
-      statusIndicator.innerHTML = t.statusNoRecent;
-      statusIndicator.className = "status-indicator status-offline";
-    }
-  } catch (error) {
-    console.error("Fout bij het ophalen van de status:", error);
-  }
-}
-
 function refreshAll() {
   if (currentView === "recent") {
     fetchBirds();
   } else {
     fetchTop25Birds();
   }
-  fetchStatus();
   updateLocale();
 }
 
@@ -274,5 +240,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   setInterval(fetchBirds, 600000);
-  setInterval(fetchStatus, 600000);
+  setInterval(fetchTop25Birds, 600000);
 });
