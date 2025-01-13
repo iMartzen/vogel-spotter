@@ -79,34 +79,6 @@ def get_top25(locale: str = Query("nl")):
         )
 
 
-@app.get("/api/status")
-def get_status():
-    try:
-        response = requests.get(
-            f"https://app.birdweather.com/api/v1/stations/{STATION_ID}"
-        )
-        response.raise_for_status()
-        status_data = response.json()
-        latest_detection = status_data.get("latestValidDetectionAt", "")
-        if latest_detection:
-            latest_detection_time = datetime.datetime.strptime(
-                latest_detection, "%Y-%m-%dT%H:%M:%S.%f%z"
-            )
-            one_hour_ago = datetime.datetime.now(
-                datetime.timezone.utc
-            ) - datetime.timedelta(hours=1)
-            is_online = latest_detection_time > one_hour_ago
-        else:
-            is_online = False
-
-        return JSONResponse(content={"status": is_online})
-    except requests.exceptions.RequestException:
-        return JSONResponse(
-            content={"error": "Er is een fout opgetreden bij het ophalen van data"},
-            status_code=500,
-        )
-
-
 app.mount(
     "/",
     StaticFiles(directory=Path(__file__).parent / "frontend", html=True),

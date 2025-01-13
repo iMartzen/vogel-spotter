@@ -120,20 +120,6 @@ h2 {
     flex-wrap: wrap;
 }
 
-.status-indicator {
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.status-online {
-    color: var(--online-color);
-}
-
-.status-offline {
-    color: var(--offline-color);
-}
 
 .refresh-button, .theme-toggle-button, .locale-toggle-button, .view-toggle-button {
     padding: 10px;
