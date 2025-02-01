@@ -12,8 +12,8 @@ DOCKER_COMPOSE_CMD = docker compose
 DOCKER_SERVICE = 
 DOCKER_LOGS_FOLLOW = 
 
-DOCKER_PUBLIC_PORT_HTTP = # use 80: to bind to 80 instead of a random port
-DOCKER_PUBLIC_PORT_HTTPS = # use 433: to bind to 443 instead of a random port
+DOCKER_PUBLIC_PORT_HTTP ?= 8000: # use 80: to bind to 80 instead of a random port
+DOCKER_PUBLIC_PORT_HTTPS ?= 8443: # use 433: to bind to 443 instead of a random port
 
 # fallback to older version
 ifneq ($(shell which docker-compose),)
@@ -39,8 +39,15 @@ up: $(ENV_FILE)
 	$(DOCKER_COMPOSE_CMD) -f $(DOCKER_COMPOSE_FILE) up --detach
 
 .PHONY: build
-build:
+build: Dockerfile down up
+
+Dockerfile: Pipfile.lock
 	$(DOCKER_COMPOSE_CMD) -f $(DOCKER_COMPOSE_FILE) build
+	touch $@
+
+Pipfile.lock: Pipfile
+	$(DOCKER_COMPOSE_CMD) -f $(DOCKER_COMPOSE_FILE) run --volume ./:/app2 \
+		--workdir /app2 --entrypoint=/usr/local/bin/pipenv app lock
 
 .PHONY: stop
 stop: down banner
