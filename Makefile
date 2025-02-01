@@ -2,9 +2,9 @@
 ENV_FILE := .env
 
 # ENV Variables
-STAGE = local
-STATION_ID = 
-HOSTNAME = localhost
+STAGE ?= local
+STATION_ID ?= 
+HOSTNAME ?= localhost
 
 # docker internals
 DOCKER_COMPOSE_FILE = docker-compose.yml
