@@ -13,7 +13,6 @@
   - [▲ Vercel](#-vercel)
   - [💻 Lokaal](#-lokaal)
   - [🌐 Server](#-server)
-  - [🪹 Voorbeeld .env bestand](#-voorbeeld-env-bestand)
 - [🦆 Projectstructuur](#-projectstructuur)
 - [🐓 Frontend](#-frontend)
 - [🦉 Backend](#-backend)
@@ -50,9 +49,11 @@ Het is mogelijk om de applicatie te implementeren op [Vercel](https://vercel.com
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/iMartzen/vogel-spotter)
 
-Vergeet niet om de omgevingsvariabele toe te voegen aan de setup. Raadpleeg de [Vercel documentatie](https://vercel.com/docs/projects/environment-variables) voor meer informatie.
+Vergeet niet om de omgevingsvariabele `STATION_ID` toe te voegen aan de setup. Raadpleeg de [Vercel documentatie](https://vercel.com/docs/projects/environment-variables) voor meer informatie.
 
 ### 💻 Lokaal
+
+Het is ook mogelijk om lokaal de applicatie te draaien. Volg hieronder de stappen.
 
 1. **Clone de repository**:
 
@@ -61,37 +62,35 @@ Vergeet niet om de omgevingsvariabele toe te voegen aan de setup. Raadpleeg de [
     cd vogel-spotter
     ```
 
-2. **Start de applicatie en volg de instructies**:
+2. **Genereer een `.env` bestand met het `STATION_ID`**:
 
     ```bash
-    ./run.sh
+    make .env STATION_ID=XXX -B
     ```
 
-    *Als het script geen uitvoerrechten heeft:* `chmod +x run.sh`
+    *Vervang XXX met het nummer van je station id
 
-3. **Open je browser** en ga naar:
+3. **Start de applicatie**:
 
     ```bash
-    https://$HOSTNAME.local
+    make run
     ```
 
-4. **Stop de applicatie**
+4. **Open je browser** en ga naar:
 
     ```bash
-    ./stop.sh
+    https://localhost:8443
     ```
 
-    *Als het script geen uitvoerrechten heeft:* `chmod +x stop.sh`
+5. **Stop de applicatie**
+
+    ```bash
+    make stop
+    ```
 
 ### 🌐 Server
 
 Gebruik het [Ansible-playbook](/ansible/playbook.yml) om de applicatie te implementeren op een server. Raadpleeg de [README.md](/ansible/README.md) voor vereisten en installatie-instructies.
-
-### 🪹 Voorbeeld `.env` bestand
-
-```bash
-STATION_ID=1
-```
 
 ## 🦆 Projectstructuur
 
@@ -147,7 +146,6 @@ Dit project is gelicentieerd onder de **MIT-licentie**. Zie het bestand [LICENSE
   - [▲ Vercel](#-vercel)
   - [💻 Locally](#-locally)
   - [🌐 Server](#-server)
-  - [🪹 Example .env file](#-example-env-file)
 - [🦆 Project Structure](#-project-structure)
 - [🦚 Frontend](#-frontend)
 - [🦢 Backend](#-backend)
@@ -194,27 +192,31 @@ Don't forget to add the environment variable to the setup. Refer to the [Vercel 
     cd vogel-spotter
     ```
 
-2. **Run the application and follow the instructions**:
+2. **Generate an `.env` file with the `STATION_ID`**:
 
     ```bash
-    ./run.sh
+    make .env STATION_ID=XXX -B
     ```
 
-    *If the script does not have execution permissions:* `chmod +x run.sh`
+    *Replace XXX with the number of your station ID.
 
-3. **Open your browser** and navigate to:
+3. **Run the application and follow the instructions**:
 
     ```bash
-    https://$HOSTNAME.local
+    make run
     ```
 
-4. **Stop the application**
+4. **Open your browser** and navigate to:
 
     ```bash
-    ./stop.sh
+    https://localhost:8443
     ```
 
-    *If the script does not have execution permissions:* `chmod +x stop.sh`
+5. **Stop the application**
+
+    ```bash
+    make stop
+    ```
 
 ### 🌐 Server
 
