@@ -3,7 +3,7 @@ ENV_FILE := .env
 
 # ENV Variables
 STAGE ?= local
-STATION_ID ?= 
+STATION_ID ?= # set to your birdweather station id
 HOSTNAME ?= localhost
 
 # docker internals
@@ -32,7 +32,7 @@ export STAGE HOSTNAME STATION_ID DOCKER_COMPOSE_CMD
 all: banner
 
 .PHONY: run
-run: banner up
+run: banner up welcome
 
 .PHONY: up
 up: $(ENV_FILE)
@@ -50,7 +50,7 @@ Pipfile.lock: Pipfile
 		--workdir /app2 --entrypoint=/usr/local/bin/pipenv app lock
 
 .PHONY: stop
-stop: down banner
+stop: down banner goodbye
 
 .PHONY: down
 down:
@@ -72,8 +72,18 @@ banner:
 	@echo "  \\\\_//) "
 	@echo "   \_/_)"
 	@echo "    _|_ "
+
+welcome:
+	@echo ""
+	@echo "\033[1;34m👋 Welcome to the vogel-spotter application\033[0m"
+	@echo ""
+
+goodbye:
+	@echo ""
+	@echo "\033[1;34m👋 Goodbye\033[0m"
 	@echo ""
 
 $(ENV_FILE):
 	echo "STATION_ID=$(STATION_ID)" > $@
-
+	echo "DOCKER_PUBLIC_PORT_HTTP=$(DOCKER_PUBLIC_PORT_HTTP)" >> $@
+	echo "DOCKER_PUBLIC_PORT_HTTPS=$(DOCKER_PUBLIC_PORT_HTTPS)" >> $@

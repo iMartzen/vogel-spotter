@@ -13,7 +13,6 @@
   - [▲ Vercel](#-vercel)
   - [💻 Lokaal](#-lokaal)
   - [🌐 Server](#-server)
-  - [🪹 Voorbeeld .env bestand](#-voorbeeld-env-bestand)
 - [🦆 Projectstructuur](#-projectstructuur)
 - [🐓 Frontend](#-frontend)
 - [🦉 Backend](#-backend)
@@ -31,7 +30,7 @@ Het doel is om vogelliefhebbers een eenvoudig platform te bieden om vogelactivit
 ## 🐤 Functies
 
 - Weergave van recente vogelwaarnemingen van het afgelopen uur.
-- Geeft de status van het BirdWeather-station weer (online/offline).
+- Weergave van top 25 meest waargenomen vogelsoorten op dit BirdWeather-station.
 - Responsief ontwerp geschikt voor verschillende schermformaten.
 - Ondersteuning voor dark mode voor gebruik in omgevingen met weinig licht.
 - Bevat een refresh-knop voor snelle updates.
@@ -50,9 +49,11 @@ Het is mogelijk om de applicatie te implementeren op [Vercel](https://vercel.com
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/iMartzen/vogel-spotter)
 
-Vergeet niet om de omgevingsvariabele toe te voegen aan de setup. Raadpleeg de [Vercel documentatie](https://vercel.com/docs/projects/environment-variables) voor meer informatie.
+Vergeet niet om de omgevingsvariabele `STATION_ID` toe te voegen aan de setup. Raadpleeg de [Vercel documentatie](https://vercel.com/docs/projects/environment-variables) voor meer informatie.
 
 ### 💻 Lokaal
+
+Het is ook mogelijk om lokaal de applicatie te draaien. Volg hieronder de stappen.
 
 1. **Clone de repository**:
 
@@ -61,37 +62,35 @@ Vergeet niet om de omgevingsvariabele toe te voegen aan de setup. Raadpleeg de [
     cd vogel-spotter
     ```
 
-2. **Start de applicatie en volg de instructies**:
+2. **Genereer een `.env` bestand met het `STATION_ID`**:
 
     ```bash
-    ./run.sh
+    make .env STATION_ID=XXX -B
     ```
 
-    *Als het script geen uitvoerrechten heeft:* `chmod +x run.sh`
+    *Vervang XXX met het nummer van je station id
 
-3. **Open je browser** en ga naar:
+3. **Start de applicatie**:
 
     ```bash
-    https://$HOSTNAME.local
+    make run
     ```
 
-4. **Stop de applicatie**
+4. **Open je browser** en ga naar:
 
     ```bash
-    ./stop.sh
+    https://localhost:8443
     ```
 
-    *Als het script geen uitvoerrechten heeft:* `chmod +x stop.sh`
+5. **Stop de applicatie**
+
+    ```bash
+    make stop
+    ```
 
 ### 🌐 Server
 
 Gebruik het [Ansible-playbook](/ansible/playbook.yml) om de applicatie te implementeren op een server. Raadpleeg de [README.md](/ansible/README.md) voor vereisten en installatie-instructies.
-
-### 🪹 Voorbeeld `.env` bestand
-
-```bash
-STATION_ID=1
-```
 
 ## 🦆 Projectstructuur
 
@@ -111,7 +110,7 @@ De backend is gebouwd met **FastAPI** en biedt de API-endpoints. Deze backend ha
 ### 🦢 API Endpoints
 
 - **`/api/detections`**: Geeft recente vogelwaarnemingen van het afgelopen uur terug.
-- **`/api/status`**: Geeft de status van het BirdWeather-station terug (online/offline).
+- **`/api/top25`**: Retourneert de top 25 van meest waargenomen vogelsoorten op dit BirdWeather-station.
 
 ## 🔒 HTTPS-Portal
 
@@ -119,7 +118,7 @@ De setup maakt gebruik van [https-portal](https://github.com/SteveLTN/https-port
 
 ## 🕊️ Inspiratie
 
-Dit project is geïnspireerd door het <luistervink.nl>-project, dat zich richt op het monitoren en analyseren van vogelgeluiden. vogel-spotter bouwt voort op dat idee door waarnemingen van BirdWeather-stations te integreren in een gebruiksvriendelijke webapplicatie.
+Dit project is geïnspireerd door het [luistervink.nl](https://www.luistervink.nl) project, dat zich richt op het monitoren en analyseren van vogelgeluiden. vogel-spotter bouwt voort op dat idee door waarnemingen van BirdWeather-stations te integreren in een gebruiksvriendelijke webapplicatie.
 
 ## 🐦 Licentie
 
@@ -131,7 +130,6 @@ Dit project is gelicentieerd onder de **MIT-licentie**. Zie het bestand [LICENSE
 
 - **Dagelijkse top 10**: Voeg een lijst toe met de 10 meest waargenomen vogels van vandaag.
 - **Maandelijkse statistieken**: Toon het aantal waarnemingen per vogelsoort gedurende een maand.
-- **Top 25 aller tijden**: Voeg een overzicht toe van de 25 meest gespotte vogels sinds het begin van de registratie.
 
 ---
 
@@ -148,7 +146,6 @@ Dit project is gelicentieerd onder de **MIT-licentie**. Zie het bestand [LICENSE
   - [▲ Vercel](#-vercel)
   - [💻 Locally](#-locally)
   - [🌐 Server](#-server)
-  - [🪹 Example .env file](#-example-env-file)
 - [🦆 Project Structure](#-project-structure)
 - [🦚 Frontend](#-frontend)
 - [🦢 Backend](#-backend)
@@ -165,7 +162,7 @@ The goal is to provide bird enthusiasts with a simple platform to track bird act
 ## 🐤 Features
 
 - Display recent bird sightings from the past hour.
-- Show the status of the BirdWeather station (online/offline).
+- Display of the top 25 most observed bird species at this BirdWeather station.
 - Responsive design suitable for various screen sizes.
 - Support for dark mode for use in low-light environments.
 - Includes a refresh button for quick updates.
@@ -195,27 +192,31 @@ Don't forget to add the environment variable to the setup. Refer to the [Vercel 
     cd vogel-spotter
     ```
 
-2. **Run the application and follow the instructions**:
+2. **Generate an `.env` file with the `STATION_ID`**:
 
     ```bash
-    ./run.sh
+    make .env STATION_ID=XXX -B
     ```
 
-    *If the script does not have execution permissions:* `chmod +x run.sh`
+    *Replace XXX with the number of your station ID.
 
-3. **Open your browser** and navigate to:
+3. **Run the application and follow the instructions**:
 
     ```bash
-    https://$HOSTNAME.local
+    make run
     ```
 
-4. **Stop the application**
+4. **Open your browser** and navigate to:
 
     ```bash
-    ./stop.sh
+    https://localhost:8443
     ```
 
-    *If the script does not have execution permissions:* `chmod +x stop.sh`
+5. **Stop the application**
+
+    ```bash
+    make stop
+    ```
 
 ### 🌐 Server
 
@@ -245,7 +246,7 @@ The backend is built with **FastAPI** and provides the API endpoints. This backe
 ### 🐓 API Endpoints
 
 - **`/api/detections`**: Returns recent bird sightings from the past hour.
-- **`/api/status`**: Returns the status of the BirdWeather station (online/offline).
+- **`/api/top25`**: Returns the top 25 most observed bird species at this BirdWeather station.
 
 ## 🔒 HTTPS-Portal
 
@@ -253,7 +254,7 @@ The setup uses [https-portal](https://github.com/SteveLTN/https-portal) in the D
 
 ## 🕊️ Inspiration
 
-This project is inspired by the <luistervink.nl> project, which focuses on monitoring and analyzing bird sounds. vogel-spotter builds on that idea by integrating observations from BirdWeather stations into a user-friendly web application.
+This project is inspired by the [luistervink.nl](https://www.luistervink.nl) project, which focuses on monitoring and analyzing bird sounds. vogel-spotter builds on that idea by integrating observations from BirdWeather stations into a user-friendly web application.
 
 ## 🐦 License
 
@@ -265,4 +266,3 @@ This project is licensed under the **MIT license**. See the [LICENSE](LICENSE) f
 
 - **Daily Top 10**: Add a list of the 10 most observed birds of today.
 - **Monthly Statistics**: Show the number of observations per bird species over a month.
-- **Top 25 All Time**: Add an overview of the 25 most spotted birds since the start of the registration.
