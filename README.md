@@ -62,31 +62,46 @@ Het is ook mogelijk om lokaal de applicatie te draaien. Volg hieronder de stappe
     cd vogel-spotter
     ```
 
-2. **Genereer een `.env` bestand met het `STATION_ID`**:
+2. **Start de applicatie**:
 
     ```bash
-    make .env STATION_ID=XXX -B
+    make run STATION_ID=XXX
     ```
 
     *Vervang XXX met het nummer van je station id
-
-3. **Start de applicatie**:
-
-    ```bash
-    make run
-    ```
 
 4. **Open je browser** en ga naar:
 
     ```bash
     https://localhost:8443
     ```
-
 5. **Stop de applicatie**
 
     ```bash
     make stop
     ```
+
+6. **Genereer een `.env` bestand met het `STATION_ID` om deze te onthouden** (optioneel):
+
+    Na het opslaan van STATION_ID kun je `make run` en `make stop` gebruiken zonder opnieuw je STATION_ID op te geven.
+    ```bash
+    make .env STATION_ID=XXX -B
+    ```
+    *Vervang XXX met het nummer van je station id
+
+7. **Expert instellingen (poorten, hostnaam, stage)**
+
+    Je kunt ook de standaard PUBLIC_PORT_HTTPS (standaard `8443:`), PUBLIC_PORT_HTTP (standaard `8000:`), de HOSTNAME (standaard `localhost`) en STAGE (standaard `local`) aanpassen en opslaan.
+
+    Bij het starten `make run`:
+
+    - `make run PUBLIC_PORT_HTTPS=443:`: start op poort 443 en open op `https://localhost/`
+    - `make run HOSTNAME=test.localhost`: de server werkt op `https://test.localhost:8443/`
+
+    Sla deze instellingen op in je `.env` bestand.
+
+    - `make .env PUBLIC_PORT_HTTPS=443: -B`: volgende `make run` zal standaard op `https://localhost/` starten.
+    - `make .env HOSTNAME=test.localhost`: de server start altijd op `https://test.localhost:8443/`
 
 ### 🌐 Server
 
